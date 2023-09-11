@@ -1,0 +1,8 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "ExpressJS Server",
+  "main": "app.ts",
+  "author": "huytran17",
+  "license": "MIT"
+}
