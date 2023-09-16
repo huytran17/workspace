@@ -6,7 +6,12 @@
   "author": "huytran17",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && gulp --max-old-space-size=8192"
+    "build": "rimraf dist && gulp --max-old-space-size=8192",
+    "dev": "nodemon src/app.ts",
+    "dc:up": "docker-compose up -d",
+    "dc:down": "docker-compose down",
+    "start": "cross-env NODE_ENV=production node ./dist/app.js --max-old-space-size=8192",
+    "ts:check": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
