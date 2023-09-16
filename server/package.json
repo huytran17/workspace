@@ -13,6 +13,9 @@
     "start": "cross-env NODE_ENV=production node ./dist/app.js --max-old-space-size=8192",
     "ts:check": "tsc --project tsconfig.json"
   },
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -33,6 +36,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "redis": "^4.6.8",
+    "request-ip": "^3.3.0",
     "ts-node": "^10.9.1",
     "validator-js": "^0.2.1",
     "winston": "^3.10.0"
@@ -44,6 +48,7 @@
     "@types/gulp": "^4.0.13",
     "@types/gulp-uglify": "^3.0.8",
     "@types/lodash": "^4.14.198",
+    "@types/module-alias": "^2.0.2",
     "@types/mongoose-lean-virtuals": "^0.5.3",
     "@types/multer": "^1.4.7",
     "@types/multer-s3": "^3.0.0",
@@ -54,6 +59,7 @@
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2",
+    "module-alias": "^2.2.3",
     "rimraf": "^5.0.1",
     "typescript": "^5.2.2"
   }

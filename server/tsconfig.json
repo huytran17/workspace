@@ -10,18 +10,13 @@
         "sourceMap": true,
         "declaration": true,
         "moduleResolution": "node",
-        "rootDir": "."
-    },
-    "paths": {
-        "@": [
-            "./src"
-        ],
-        "assets": [
-            "./src/assets"
-        ],
-        "public": [
-            "./src/public"
-        ],
+        "rootDir": ".",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        },
     },
     "exclude": [
         "node_modules",
