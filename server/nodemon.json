@@ -1,5 +1,4 @@
 {
-  "ignore": ["README"],
   "watch": ["./src/**/*"],
   "ext": "ts",
   "exec": "ts-node --log-error -- ./src/app.ts"
