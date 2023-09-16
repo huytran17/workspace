@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "outDir": "./dist",
+        "removeComments": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "declaration": true,
+        "moduleResolution": "node",
+        "rootDir": "."
+    },
+    "paths": {
+        "@": [
+            "./src"
+        ],
+        "assets": [
+            "./src/assets"
+        ],
+        "public": [
+            "./src/public"
+        ],
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+    "include": [
+        "src"
+    ]
+}
