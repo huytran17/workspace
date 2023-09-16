@@ -11,7 +11,7 @@
     "dc:up": "docker-compose up -d",
     "dc:down": "docker-compose down",
     "start": "cross-env NODE_ENV=production node ./dist/app.js --max-old-space-size=8192",
-    "ts:check": "tsc --project tsconfig.json"
+    "ts:build": "tsc --project tsconfig.json"
   },
   "_moduleAliases": {
     "@": "dist"
