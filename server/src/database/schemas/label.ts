@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import ILabel from "../interfaces/label";
 
 const Schema = mongoose.Schema;
 
-const labelSchema = new Schema({
+const labelSchema = new Schema<ILabel>({
   title: { type: String, required: true, trim: true },
   color: { type: String, required: true, trim: true },
   created_at: { type: Date, default: new Date() },
