@@ -15,12 +15,11 @@ export default class Redis {
     }
 
     Redis.redis_instance = this;
-    return this;
   }
 
   getInstance() {
     if (!Redis.redis_instance) {
-      Redis.redis_instance = new Redis();
+      new Redis();
     }
 
     return Redis.redis_instance;
@@ -63,6 +62,6 @@ export default class Redis {
   }
 }
 
-const redis = new Redis();
+const redis = new Redis().getInstance();
 
 export { redis };
