@@ -14,7 +14,7 @@
     "ts:build": "tsc --project tsconfig.json"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "./src"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -38,7 +38,7 @@
     "redis": "^4.6.8",
     "request-ip": "^3.3.0",
     "ts-node": "^10.9.1",
-    "validator-js": "^0.2.1"
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.438.0",
