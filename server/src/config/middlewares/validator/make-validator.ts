@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import { http_status } from "@/config/constants/http-status";
+import { NextFunction, Request, Response } from "express";
 import Validator from "validatorjs";
 
 export default function makeValidator(rules: Record<string, any>) {
@@ -13,10 +14,10 @@ export default function makeValidator(rules: Record<string, any>) {
 
       const errors = validation.errors.all();
 
-      res.status(400).json(errors);
+      res.status(http_status.BAD_REQUEST).json(errors);
     } catch (error) {
       console.error(error);
-      res.status(500).json(error);
+      res.status(http_status.INTERNAL_SERVER_ERROR).json(error);
     }
   };
 }

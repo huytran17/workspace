@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { http_status } from "@/config/constants/http-status";
 
 export default function makeExpressCallback(controller: Function) {
   return async function (req: Request, res: Response, next: NextFunction) {
@@ -11,12 +12,12 @@ export default function makeExpressCallback(controller: Function) {
 
       const result = await controller(httpRequest);
 
-      res.status(200).json(result);
+      res.status(http_status.OK).json(result);
 
       next();
     } catch (error) {
       console.error(error);
-      res.status(500).json(error);
+      res.status(http_status.INTERNAL_SERVER_ERROR).json(error);
     }
   };
 }
