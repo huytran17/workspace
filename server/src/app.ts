@@ -1,13 +1,13 @@
-import bodyParser from "body-parser";
 import dotenv from "dotenv";
+dotenv.config();
+
+import bodyParser from "body-parser";
 import express from "express";
 import helmet from "helmet";
 import "module-alias/register";
 import { cors } from "./config/cors";
 import { upload } from "./config/multer-s3";
 import Redis from "./config/redis";
-
-dotenv.config();
 
 const app = express();
 
