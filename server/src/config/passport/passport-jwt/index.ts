@@ -18,6 +18,7 @@ export default function makePassportJWT({
     };
 
     passport.use(
+      "jwt-user",
       new JwtStrategy(options, async (payload: { email: string }, done) => {
         const exists = await UserModel.findOne({ email: payload.email });
 
