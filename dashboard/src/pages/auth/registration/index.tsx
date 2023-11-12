@@ -1,4 +1,4 @@
-import BaseRegistrationForm from "@/components/auth/BaseRegistrationForm";
+import BaseRegistrationForm from "@/components/auth/registration/BaseRegistrationForm";
 import { FC } from "react";
 
 const RegistrationPage: FC<{}> = () => {
