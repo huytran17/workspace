@@ -1,6 +1,6 @@
 import { Key } from "react";
 
-const generateKey = (): Key | null | undefined => {
+const keyGenerator = (): Key | null | undefined => {
   const S4 = function (): string {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
@@ -21,4 +21,4 @@ const generateKey = (): Key | null | undefined => {
   );
 };
 
-export { generateKey };
+export { keyGenerator };
