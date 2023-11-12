@@ -1,5 +1,5 @@
 import { ComponentType } from "react";
-import BaseRegistrationForm from "./components/auth/BaseRegistrationForm";
+import BaseRegistrationForm from "./components/auth/registration/BaseRegistrationForm";
 
 interface IRoute {
   path: string;
