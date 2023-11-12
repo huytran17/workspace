@@ -7,24 +7,27 @@ const BaseRegistrationForm: FC<{}> = () => {
     <div className="registration">
       <Box component="form" noValidate autoComplete="off">
         <FormGroup>
-          <TextField
-            label="Email"
-            variant="outlined"
-            type="email"
-            required={true}
-          />
-          <TextField label="Username" variant="outlined" required={true} />
+          <TextField label="Email" variant="outlined" type="email" required />
+          <TextField label="Username" variant="outlined" required />
           <TextField
             label="Password"
             variant="outlined"
             type="password"
-            required={true}
+            required
+          />
+          <TextField
+            label="Password Confirmation"
+            variant="outlined"
+            type="password"
+            required
           />
         </FormGroup>
 
-        <Button variant="contained" disableElevation>
-          Submit
-        </Button>
+        <FormGroup>
+          <Button variant="contained" disableElevation>
+            Submit
+          </Button>
+        </FormGroup>
       </Box>
     </div>
   );
