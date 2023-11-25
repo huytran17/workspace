@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import IUserDb from "./interfaces/user-db";
+import User from "@/database/entities/user";
 import IUser from "@/database/interfaces/user";
 import { map } from "lodash";
-import User from "@/database/entities/user";
+import mongoose from "mongoose";
+import IUserDb from "./interfaces/user-db";
 
 export default function makeUserDb({
   userDbModel,
@@ -30,10 +30,10 @@ export default function makeUserDb({
       }
     }
 
-    async findById({ id }: { id: string }) {
+    async findById({ _id }: { _id: string }) {
       try {
         const queryConditions = {
-          _id: id,
+          _id,
           deleted_at: null,
         };
 
@@ -66,7 +66,9 @@ export default function makeUserDb({
       }
     }
 
-    async insert(payload: IUser) {
+    async insert(
+      payload: Omit<IUser, "_id" | "created_at" | "updated_at" | "deleted_at">
+    ) {
       try {
         const user = await userDbModel.create(payload);
         if (user) {
@@ -92,9 +94,9 @@ export default function makeUserDb({
       }
     }
 
-    async delete({ id }: { id: string }) {
+    async delete({ _id }: { _id: string }) {
       try {
-        const user = await userDbModel.findByIdAndDelete(id);
+        const user = await userDbModel.findByIdAndDelete({ _id });
         if (user) {
           return new User(user);
         }
@@ -105,9 +107,9 @@ export default function makeUserDb({
       }
     }
 
-    async hardDelete({ id }: { id: string }) {
+    async hardDelete({ _id }: { _id: string }) {
       try {
-        const user = await userDbModel.findOneAndUpdate({ id });
+        const user = await userDbModel.findOneAndUpdate({ _id });
         if (user) {
           return new User(user);
         }
