@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rimraf dist && gulp --max-old-space-size=8192",
     "dev": "nodemon src/app.ts",
-    "dc:up": "docker-compose up -d",
+    "dc:up": "docker-compose up -d --build --force-recreate --renew-anon-volumes",
     "dc:down": "docker-compose down",
     "start": "cross-env NODE_ENV=production node ./dist/app.js --max-old-space-size=8192",
     "ts:build": "tsc --project tsconfig.json"
