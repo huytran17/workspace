@@ -22,7 +22,11 @@ const authReducers = {
     state: IAuthState,
     action: PayloadAction<{ path: string; data: any }>
   ): void => {
-    state.user = update(state.user, action.payload.path, action.payload.data);
+    state.user = update(
+      state.user,
+      action.payload.path,
+      () => action.payload.data
+    );
   },
 };
 
