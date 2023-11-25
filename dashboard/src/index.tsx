@@ -5,6 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import "./styles/index.scss";
+import initialAxios from "./config/axios";
+
+initialAxios(store.dispatch);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
