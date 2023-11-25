@@ -1,16 +1,17 @@
-import makeRegister from "./register";
-import { createUser } from "@/use-cases/user";
+import makeRegisterController from "./register";
+import { createUser, getUserByEmail } from "@/use-cases/user";
 import { hashPassword } from "@/config/bcrypt";
 
-const register = makeRegister({
+const registerController = makeRegisterController({
   createUser,
   hashPassword,
+  getUserByEmail,
 });
 
 const authServices = Object.freeze({
-  register,
+  registerController,
 });
 
 export default authServices;
 
-export { register };
+export { registerController };

@@ -9,6 +9,7 @@ import { cors } from "./config/cors";
 import { upload } from "./config/multer-s3";
 import Redis from "./config/redis";
 import makeDbConnection from "./data-access/make-db";
+import { app_router } from "./routes";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(upload.single("files"));
+app.use(app_router);
 
 app.listen(process.env.SERVER_PORT, async () => {
   console.log(`Server listening on port ${process.env.SERVER_PORT}`);

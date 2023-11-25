@@ -2,22 +2,34 @@ import { HashPassword } from "@/config/bcrypt/hash-password";
 import { http_status } from "@/config/constants/http-status";
 import IUser from "@/database/interfaces/user";
 import { CreateUser } from "@/use-cases/user/create-user";
-import { get } from "lodash";
+import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
+import { get, isEmpty, isNil } from "lodash";
 
-export default function makeRegister({
+export default function makeRegisterController({
   createUser,
+  getUserByEmail,
   hashPassword,
 }: {
   createUser: CreateUser;
   hashPassword: HashPassword;
+  getUserByEmail: GetUserByEmail;
 }) {
-  return async function register(httpRequest: Request & { validated: {} }) {
+  return async function registerController(
+    httpRequest: Request & { validated: {} }
+  ) {
     const headers = {
       "Content-Type": "application/json",
     };
 
     try {
       const user_details = <IUser>get(httpRequest, "validated", {});
+
+      const email = get(user_details, "email");
+
+      const exists = await getUserByEmail({ email });
+      if (!isEmpty(exists) && !isNil(exists)) {
+        throw new Error(`User by email ${exists.email} already exists`);
+      }
 
       const password = get(user_details, "password");
       const password_confirmation = get(user_details, "password_confirmation");
