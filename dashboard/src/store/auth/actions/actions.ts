@@ -18,11 +18,7 @@ const UPDATE_USER_DATA = (payload: { path: string; data: any }) => ({
 });
 
 const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
-  const user = await axios.get(
-    "https://wizard-world-api.herokuapp.com/Elixirs"
-  );
-
-  console.log("-----------------", user);
+  // code
 
   dispatch({
     type: ActionTypes.REGISTER,
