@@ -1,0 +1,8 @@
+const registerValidator = {
+  email: "required|email",
+  fullname: "required|string",
+  password: "required|string",
+  password_confirmation: "required|string",
+};
+
+export { registerValidator };
