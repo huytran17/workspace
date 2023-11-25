@@ -1,12 +1,12 @@
 import { createSlice, type Slice } from "@reduxjs/toolkit";
-import { reducers } from "./reducers/reducers";
-import { initialState } from "./states/states";
+import { authReducers } from "./reducers/reducers";
+import { initialAuthState } from "./states/states";
 import IAuthState from "./states/state-interface";
 
 export const authSlice: Slice<IAuthState> = createSlice({
   name: "auth",
-  initialState,
-  reducers,
+  initialState: initialAuthState,
+  reducers: authReducers,
 });
 
 export const authActions = authSlice.actions;

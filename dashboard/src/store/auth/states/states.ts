@@ -1,7 +1,8 @@
 import type IAuthState from "./state-interface";
 
-const initialState: IAuthState = {
+const initialAuthState: IAuthState = {
   hasUser: false,
+  user: {},
 };
 
-export { initialState };
+export { initialAuthState };
