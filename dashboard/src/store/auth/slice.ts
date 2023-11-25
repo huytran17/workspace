@@ -1,8 +1,9 @@
-import { createSlice, Slice } from "@reduxjs/toolkit";
-import { reducers } from "./reducers";
-import { initialState } from "./states";
+import { createSlice, type Slice } from "@reduxjs/toolkit";
+import { reducers } from "./reducers/reducers";
+import { initialState } from "./states/states";
+import IAuthState from "./states/state-interface";
 
-export const authSlice: Slice = createSlice({
+export const authSlice: Slice<IAuthState> = createSlice({
   name: "auth",
   initialState,
   reducers,

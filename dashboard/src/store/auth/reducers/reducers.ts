@@ -1,10 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { ReducerTypes } from "./reducer-types";
-import IState from "./state-interface";
+import type IAuthState from "../states/state-interface";
 
 const reducers = {
   [ReducerTypes.SET_HAS_USER]: (
-    state: IState,
+    state: IAuthState,
     action: PayloadAction<boolean>
   ): void => {
     state.hasUser = action.payload;
