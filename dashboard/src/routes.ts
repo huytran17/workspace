@@ -1,5 +1,7 @@
-import { ComponentType } from "react";
-import BaseRegistrationForm from "./components/auth/registration/BaseRegistrationForm";
+import { ComponentType, lazy } from "react";
+const BaseRegistrationForm = lazy(
+  () => import("./components/auth/registration/BaseRegistrationForm")
+);
 
 interface IRoute {
   path: string;
