@@ -3,7 +3,7 @@ import { http_status } from "@/config/constants/http-status";
 import IUser from "@/database/interfaces/user";
 import { CreateUser } from "@/use-cases/user/create-user";
 import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
-import { get, isEmpty, isNil } from "lodash";
+import { get, isEmpty, isNil, omit } from "lodash";
 
 export default function makeRegisterController({
   createUser,
@@ -51,14 +51,14 @@ export default function makeRegisterController({
 
       return {
         headers,
-        status: http_status.CREATED,
-        body: user,
+        statusCode: http_status.CREATED,
+        body: omit(user, ["hash_password"]),
       };
     } catch (error) {
       throw {
         headers,
-        status: http_status.INTERNAL_SERVER_ERROR,
-        error: error.message,
+        statusCode: http_status.INTERNAL_SERVER_ERROR,
+        body: error.message,
       };
     }
   };

@@ -1,7 +1,7 @@
 const registerValidator = {
   email: "required|email",
-  fullname: "required|string",
-  password: "required|string",
+  fullname: "required|string|min:2|max:40",
+  password: "required|string|min:8|confirmed",
   password_confirmation: "required|string",
 };
 
