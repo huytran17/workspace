@@ -3,7 +3,7 @@ import { SET_IS_LOADING } from "@/store/system/actions/actions";
 import { RootDispatch } from "@/store";
 
 const initialAxios = (dispatch: RootDispatch) => {
-  axios.defaults.baseURL = process.env.SERVER_URL;
+  axios.defaults.baseURL = `${process.env.REACT_APP_SERVER_URL}/api`;
 
   axios.interceptors.request.use((request: InternalAxiosRequestConfig) => {
     console.log(`Making request to ${request.url}`);
@@ -29,10 +29,7 @@ const initialAxios = (dispatch: RootDispatch) => {
       return response;
     },
     (error) => {
-      console.log(`Encountered error: ${error}`);
-
       dispatch(SET_IS_LOADING(false));
-
       return Promise.reject(error);
     }
   );
