@@ -2,16 +2,11 @@
 
 .registration {
   form {
-    max-width: toRem(500);
     padding: toRem(10);
     margin: toRem(30) auto 0 auto;
-    .MuiFormGroup-root {
-      &:first-child {
-        gap: toRem(20);
-      }
-      &:last-child {
-        margin-top: toRem(20);
-      }
+    button[type="submit"] {
+      display: block;
+      margin: 0 auto;
     }
   }
 }

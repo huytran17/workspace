@@ -1,34 +1,126 @@
-import { Box, Button, TextField, FormGroup } from "@mui/material";
-import { FC } from "react";
+import { useRootDispatch, useRootSelector } from "@/hooks/redux";
+import { REGISTER, UPDATE_USER_DATA } from "@/store/auth/actions/actions";
+import authSelectors from "@/store/auth/states/selectors";
+import { registrationRules } from "@/validation";
+import { Button, Form, Input } from "antd";
+import { FC, useEffect, useState } from "react";
 import "./style.scss";
 
+type RegistrationDetails = {
+  email: string;
+  fullname: string;
+  password: string;
+  password_confirmation: string;
+};
+
 const BaseRegistrationForm: FC<{}> = () => {
+  const dispatch = useRootDispatch();
+  const user = useRootSelector(authSelectors.selectUser);
+
+  const [submittable, setSubmittable] = useState(false);
+
+  const [form] = Form.useForm();
+  const values = Form.useWatch([], form);
+
+  useEffect(() => {
+    form.validateFields({ validateOnly: true }).then(
+      () => {
+        setSubmittable(true);
+      },
+      () => {
+        setSubmittable(false);
+      }
+    );
+  }, [values]);
+
+  const register = () => submittable && dispatch(REGISTER(user));
+
   return (
     <div className="registration">
-      <Box component="form" noValidate autoComplete="off">
-        <FormGroup>
-          <TextField label="Email" variant="outlined" type="email" required />
-          <TextField label="Username" variant="outlined" required />
-          <TextField
-            label="Password"
-            variant="outlined"
-            type="password"
-            required
+      <Form
+        form={form}
+        name="basic"
+        style={{ maxWidth: 600 }}
+        autoComplete="off"
+        layout="vertical"
+        scrollToFirstError
+      >
+        <Form.Item<RegistrationDetails>
+          label="Email"
+          name="email"
+          rules={registrationRules.email}
+        >
+          <Input
+            type="email"
+            name="email"
+            size="large"
+            onChange={(e) =>
+              dispatch(
+                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
+              )
+            }
           />
-          <TextField
-            label="Password Confirmation"
-            variant="outlined"
-            type="password"
-            required
-          />
-        </FormGroup>
+        </Form.Item>
 
-        <FormGroup>
-          <Button variant="contained" disableElevation>
+        <Form.Item<RegistrationDetails>
+          label="Fullname"
+          name="fullname"
+          rules={registrationRules.fullname}
+        >
+          <Input
+            name="fullname"
+            size="large"
+            onChange={(e) =>
+              dispatch(
+                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
+              )
+            }
+          />
+        </Form.Item>
+
+        <Form.Item<RegistrationDetails>
+          label="Password"
+          name="password"
+          rules={registrationRules.password}
+        >
+          <Input.Password
+            name="password"
+            size="large"
+            onChange={(e) =>
+              dispatch(
+                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
+              )
+            }
+          />
+        </Form.Item>
+
+        <Form.Item<RegistrationDetails>
+          label="Password Confirmation"
+          name="password_confirmation"
+          rules={registrationRules.password_confirmation}
+        >
+          <Input.Password
+            name="password_confirmation"
+            size="large"
+            onChange={(e) =>
+              dispatch(
+                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
+              )
+            }
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={!submittable}
+            onClick={() => register()}
+          >
             Submit
           </Button>
-        </FormGroup>
-      </Box>
+        </Form.Item>
+      </Form>
     </div>
   );
 };
