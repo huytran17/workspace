@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction, response } from "express";
 import { http_status } from "@/config/constants/http-status";
-import { get } from "lodash";
 
 export default function makeExpressCallback(controller: Function) {
   return async function (req: Request, res: Response, next: NextFunction) {
@@ -29,10 +28,10 @@ export default function makeExpressCallback(controller: Function) {
         })
         .catch((error: any) => {
           res.status(error.statusCode).send(error.body);
-          next(error);
+          next(JSON.stringify(error));
         });
     } catch (error) {
-      console.error(error);
+      console.error(JSON.stringify(error));
       res.status(http_status.INTERNAL_SERVER_ERROR).json(error);
     }
   };
