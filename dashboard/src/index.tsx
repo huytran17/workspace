@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
+import initialAxios from "./config/axios";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import "./styles/index.scss";
-import initialAxios from "./config/axios";
 
 initialAxios(store.dispatch);
 
