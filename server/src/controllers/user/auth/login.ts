@@ -49,7 +49,7 @@ export default function makeLoginController({
       return {
         headers,
         statusCode: http_status.OK,
-        body: access_token,
+        body: { access_token },
       };
     } catch (error) {
       throw {
