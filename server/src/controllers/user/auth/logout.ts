@@ -11,7 +11,7 @@ export default function makeLogoutController({
 }: {
   getUserByEmail: GetUserByEmail;
 }) {
-  return async function logoutController(httpRequest: { validated: {} }) {
+  return async function logoutController(httpRequest: { user: {} }) {
     const headers = {
       "Content-Type": "application/json",
     };
