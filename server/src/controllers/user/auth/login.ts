@@ -1,3 +1,4 @@
+import { CreateAccessToken } from "@/config/access-token/create-access-token";
 import { VerifyPassword } from "@/config/bcrypt/verify-password";
 import { http_status } from "@/config/constants/http-status";
 import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
@@ -11,9 +12,11 @@ interface IPayload {
 export default function makeLoginController({
   getUserByEmail,
   verifyPassword,
+  createAccessToken,
 }: {
   getUserByEmail: GetUserByEmail;
   verifyPassword: VerifyPassword;
+  createAccessToken: CreateAccessToken;
 }) {
   return async function loginController(httpRequest: { validated: {} }) {
     const headers = {
@@ -37,10 +40,16 @@ export default function makeLoginController({
         throw new Error("Invalid password");
       }
 
+      const jwt_payload = {
+        _id: exists._id,
+        email: exists.email,
+      };
+      const access_token = createAccessToken({ payload: jwt_payload });
+
       return {
         headers,
         statusCode: http_status.OK,
-        body: omit(exists, ["hash_password"]),
+        body: access_token,
       };
     } catch (error) {
       throw {

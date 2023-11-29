@@ -1,7 +1,8 @@
-import makeRegisterController from "./register";
-import makeLoginController from "./login";
-import { createUser, getUserByEmail } from "@/use-cases/user";
+import { createAccessToken } from "@/config/access-token";
 import { hashPassword, verifyPassword } from "@/config/bcrypt";
+import { createUser, getUserByEmail } from "@/use-cases/user";
+import makeLoginController from "./login";
+import makeRegisterController from "./register";
 
 const registerController = makeRegisterController({
   createUser,
@@ -12,6 +13,7 @@ const registerController = makeRegisterController({
 const loginController = makeLoginController({
   getUserByEmail,
   verifyPassword,
+  createAccessToken,
 });
 
 const authServices = Object.freeze({
@@ -21,4 +23,4 @@ const authServices = Object.freeze({
 
 export default authServices;
 
-export { registerController, loginController };
+export { loginController, registerController };
