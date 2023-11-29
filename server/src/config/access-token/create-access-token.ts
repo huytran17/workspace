@@ -14,8 +14,10 @@ export type CreateAccessToken = ({
 
 export default function makeCreateAccessToken({
   jwt,
+  PASSPORT_JWT_SECRET_KEY,
 }: {
   jwt: typeof _jwt;
+  PASSPORT_JWT_SECRET_KEY: string;
 }): CreateAccessToken {
   return function createAccessToken({
     payload,
@@ -25,7 +27,7 @@ export default function makeCreateAccessToken({
     options?: _jwt.SignOptions;
   }) {
     try {
-      return jwt.sign(payload, process.env.JSON_WEB_TOKEN_SECRET_KEY, {
+      return jwt.sign(payload, PASSPORT_JWT_SECRET_KEY, {
         ...defaultOptions,
         ...options,
       });

@@ -10,8 +10,10 @@ export type VerifyAccessToken = ({
 
 export default function makeVerifyAccessToken({
   jwt,
+  PASSPORT_JWT_SECRET_KEY,
 }: {
   jwt: typeof _jwt;
+  PASSPORT_JWT_SECRET_KEY: string;
 }): VerifyAccessToken {
   return function verifyAccessToken({
     token,
@@ -21,7 +23,7 @@ export default function makeVerifyAccessToken({
     options?: object;
   }) {
     try {
-      return jwt.verify(token, process.env.JSON_WEB_TOKEN_SECRET_KEY, options);
+      return jwt.verify(token, PASSPORT_JWT_SECRET_KEY, options);
     } catch (error) {
       throw new Error(JSON.stringify(error));
     }
