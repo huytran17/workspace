@@ -5,6 +5,13 @@ import { CreateUser } from "@/use-cases/user/create-user";
 import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
 import { get, isEmpty, isNil, omit } from "lodash";
 
+interface IPayload {
+  email: string;
+  fullname: string;
+  password: string;
+  password_confirmation: string;
+}
+
 export default function makeRegisterController({
   createUser,
   getUserByEmail,
@@ -22,12 +29,12 @@ export default function makeRegisterController({
     };
 
     try {
-      const user_details = <IUser>get(httpRequest, "validated", {});
+      const user_details = <IPayload>get(httpRequest, "validated", {});
 
       const email = get(user_details, "email");
 
       const exists = await getUserByEmail({ email });
-      if (!isEmpty(exists) && !isNil(exists)) {
+      if (!isNil(exists)) {
         throw new Error(`User by email ${exists.email} already exists`);
       }
 
