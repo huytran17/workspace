@@ -10,10 +10,8 @@ const initialAxios = (dispatch: RootDispatch) => {
 
     dispatch(SET_IS_LOADING(true));
 
-    request.headers.set("Authorization", localStorage.getItem("auth_token"));
-
     request.headers.set({
-      Authorization: localStorage.getItem("auth_token"),
+      Authorization: localStorage.getItem("access_token"),
       "token-type": "bearer",
     });
 
