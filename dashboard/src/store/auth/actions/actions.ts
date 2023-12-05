@@ -31,4 +31,16 @@ const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
   }
 };
 
-export { SET_HAS_USER, SET_USER_DATA, UPDATE_USER_DATA, REGISTER };
+const LOGIN = (payload: object) => async (dispatch: RootDispatch) => {
+  try {
+    const user = await axios.post(`/auth/login`, payload);
+    dispatch({
+      type: ActionTypes.SET_USER_DATA,
+      payload: get(user, "data"),
+    });
+  } catch (error) {
+    toastError({ message: "Encountered error while logging in" });
+  }
+};
+
+export { SET_HAS_USER, SET_USER_DATA, UPDATE_USER_DATA, REGISTER, LOGIN };
