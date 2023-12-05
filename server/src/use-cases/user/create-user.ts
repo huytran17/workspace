@@ -1,10 +1,10 @@
 import IUserDb from "@/data-access/interfaces/user-db";
 import IUser from "@/database/interfaces/user";
 
-type OmittedFields = "_id" | "created_at" | "updated_at" | "deleted_at";
+type OmitProps = "_id" | "created_at" | "updated_at" | "deleted_at";
 
 interface IUserDetails {
-  userDetails: Omit<IUser, OmittedFields>;
+  userDetails: Omit<IUser, OmitProps>;
 }
 
 export type CreateUser = ({ userDetails }: IUserDetails) => Promise<IUser>;
