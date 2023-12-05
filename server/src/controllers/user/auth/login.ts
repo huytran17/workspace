@@ -54,7 +54,7 @@ export default function makeLoginController({
     } catch (error) {
       throw {
         headers,
-        status: http_status.INTERNAL_SERVER_ERROR,
+        statusCode: http_status.INTERNAL_SERVER_ERROR,
         body: error.message,
       };
     }

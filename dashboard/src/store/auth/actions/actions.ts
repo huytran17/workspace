@@ -21,23 +21,23 @@ const UPDATE_USER_DATA = (payload: { path: string; data: any }) => ({
 
 const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
   try {
-    const user = await axios.post(`/auth/register`, payload);
+    const { data } = await axios.post(`/auth/register`, payload);
+
     dispatch({
       type: ActionTypes.SET_USER_DATA,
-      payload: get(user, "data"),
+      payload: data,
     });
   } catch (error) {
     toastError({ message: "Encountered error while registering user" });
   }
 };
 
-const LOGIN = (payload: object) => async (dispatch: RootDispatch) => {
+const LOGIN = (payload: object) => async () => {
   try {
-    const user = await axios.post(`/auth/login`, payload);
-    dispatch({
-      type: ActionTypes.SET_USER_DATA,
-      payload: get(user, "data"),
-    });
+    const { data } = await axios.post(`/auth/login`, payload);
+    const access_token = get(data, "access_token", "");
+
+    localStorage.setItem("access_token", access_token);
   } catch (error) {
     toastError({ message: "Encountered error while logging in" });
   }
