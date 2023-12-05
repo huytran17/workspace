@@ -6,7 +6,12 @@ export default class Redis {
 
   constructor() {
     if (!Redis.redis_client) {
-      Redis.redis_client = createClient();
+      Redis.redis_client = createClient({
+        socket: {
+          connectTimeout: 10000,
+          reconnectStrategy: (retries) => Math.min(retries * 50, 1000),
+        },
+      });
 
       Redis.redis_client
         .connect()
