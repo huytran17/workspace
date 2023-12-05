@@ -1,0 +1,12 @@
+@import "@/styles/functions";
+
+.login {
+  form {
+    padding: toRem(10);
+    margin: toRem(30) auto 0 auto;
+    button[type="submit"] {
+      display: block;
+      margin: toRem(4) auto 0 auto;
+    }
+  }
+}

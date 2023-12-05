@@ -17,7 +17,7 @@ const routes: IRoute[] = [
     component: BaseRegistrationForm,
   },
   {
-    path: "auth/login",
+    path: "/auth/login",
     component: BaseLoginForm,
   },
 ];

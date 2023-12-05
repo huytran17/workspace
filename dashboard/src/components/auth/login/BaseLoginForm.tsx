@@ -1,9 +1,10 @@
+import { useRootDispatch, useRootSelector } from "@/hooks/redux";
+import { LOGIN, UPDATE_USER_DATA } from "@/store/auth/actions/actions";
+import authSelectors from "@/store/auth/states/selectors";
+import { loginRules } from "@/validation";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
-import { loginRules } from "@/validation";
-import { LOGIN, UPDATE_USER_DATA } from "@/store/auth/actions/actions";
-import { useRootDispatch, useRootSelector } from "@/hooks/redux";
-import authSelectors from "@/store/auth/states/selectors";
+import "./style.scss";
 
 type LoginDetails = {
   email: string;
@@ -63,8 +64,8 @@ const BaseLoginForm: FC<{}> = () => {
           name="password"
           rules={loginRules.password}
         >
-          <Input
-            name="fullname"
+          <Input.Password
+            name="password"
             size="large"
             onChange={(e) =>
               dispatch(
