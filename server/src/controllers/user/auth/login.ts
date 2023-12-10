@@ -2,7 +2,7 @@ import { CreateAccessToken } from "@/config/access-token/create-access-token";
 import { VerifyPassword } from "@/config/bcrypt/verify-password";
 import { http_status } from "@/config/constants/http-status";
 import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
-import { get, isNil, omit } from "lodash";
+import { get, isNil } from "lodash";
 
 interface IPayload {
   email: string;
