@@ -10,7 +10,7 @@ export interface IEmailData {
   sender?: string;
 }
 
-interface IGetEmailContent extends Omit<IEmailData, "text"> {
+interface IGetEmailContent extends Omit<IEmailData, "text" | "sender"> {
   type: string;
 }
 
@@ -20,7 +20,6 @@ export type GetEmailContent = ({
   type,
   cc,
   bcc,
-  sender,
 }: IGetEmailContent) => Omit<IEmailData, "sender">;
 
 export default function makeGetEmailContent({
@@ -38,7 +37,6 @@ export default function makeGetEmailContent({
     type,
     cc = [],
     bcc = [],
-    sender = "",
   }: IGetEmailContent) {
     const is_valid_receivers = !to || to.length;
     if (!is_valid_receivers) {
@@ -52,7 +50,7 @@ export default function makeGetEmailContent({
     const text_template = htmlToText(template);
 
     return Object.freeze({
-      from: sender || default_sender,
+      from: from || default_sender,
       to,
       subject,
       text: text_template,
