@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const default_data = {
-  app_name: "Workspace",
+  app_name: "Lookup",
 };
 
 const subjects = {
