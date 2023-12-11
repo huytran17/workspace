@@ -12,7 +12,9 @@ export default function makeGetUserByEmail({
 }: {
   userDb: IUserDb;
 }): GetUserByEmail {
-  return async function getUserByEmail({ email }: IUserDetails) {
+  return async function getUserByEmail({
+    email,
+  }: IUserDetails): Promise<IUser> {
     const user = await userDb.findByEmail({ email });
     return user;
   };

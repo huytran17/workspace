@@ -13,7 +13,7 @@ export default function makeUserDb({
   >;
 }) {
   return new (class UserDb implements IUserDb {
-    async findAll() {
+    async findAll(): Promise<IUser[]> {
       try {
         const queryConditions = {
           deleted_at: null,
@@ -30,7 +30,7 @@ export default function makeUserDb({
       }
     }
 
-    async findById({ _id }: { _id: string }) {
+    async findById({ _id }: { _id: string }): Promise<IUser> {
       try {
         const queryConditions = {
           _id,
@@ -48,7 +48,7 @@ export default function makeUserDb({
       }
     }
 
-    async findByEmail({ email }: { email: string }) {
+    async findByEmail({ email }: { email: string }): Promise<IUser> {
       try {
         const queryConditions = {
           email,
@@ -68,7 +68,7 @@ export default function makeUserDb({
 
     async insert(
       payload: Omit<IUser, "_id" | "created_at" | "updated_at" | "deleted_at">
-    ) {
+    ): Promise<IUser> {
       try {
         const user = await userDbModel.create(payload);
         if (user) {
@@ -81,7 +81,7 @@ export default function makeUserDb({
       }
     }
 
-    async update(payload: IUser) {
+    async update(payload: IUser): Promise<IUser> {
       try {
         const user = await userDbModel.findOneAndUpdate(payload);
         if (user) {
@@ -94,7 +94,7 @@ export default function makeUserDb({
       }
     }
 
-    async delete({ _id }: { _id: string }) {
+    async delete({ _id }: { _id: string }): Promise<IUser> {
       try {
         const user = await userDbModel.findByIdAndDelete({ _id });
         if (user) {
@@ -107,7 +107,7 @@ export default function makeUserDb({
       }
     }
 
-    async hardDelete({ _id }: { _id: string }) {
+    async hardDelete({ _id }: { _id: string }): Promise<IUser> {
       try {
         const user = await userDbModel.findOneAndUpdate({ _id });
         if (user) {
