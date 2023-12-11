@@ -6,6 +6,7 @@ import express from "express";
 import helmet from "helmet";
 import "module-alias/register";
 import { cors } from "./config/cors";
+import { initializeNodemailer } from "./config/mailer/mailer";
 import { upload } from "./config/multer-s3";
 import Redis from "./config/redis";
 import makeDbConnection from "./data-access/make-db";
@@ -21,7 +22,8 @@ app.use(upload.single("files"));
 app.use(app_router);
 
 app.listen(process.env.SERVER_PORT, async () => {
-  console.log(`Server listening on port ${process.env.SERVER_PORT}`);
+  console.log(`Server is listening on port ${process.env.SERVER_PORT}`);
   await makeDbConnection();
   new Redis();
+  initializeNodemailer();
 });

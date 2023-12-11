@@ -42,7 +42,7 @@ export default function makeGetEmailContent({
   }: IGetEmailContent) {
     const is_valid_receivers = !to || to.length;
     if (!is_valid_receivers) {
-      console.log("Can not send email: invalid receivers.");
+      console.log("Can not find any recipients to send email.");
       return;
     }
 

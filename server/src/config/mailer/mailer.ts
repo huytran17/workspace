@@ -1,10 +1,10 @@
-import nodemailer, { Transporter } from "nodemailer";
 import handlebars from "handlebars";
+import nodemailer, { Transporter } from "nodemailer";
 import { IEmailData } from "./get-email-content";
 
 let transporter: Transporter | undefined | any;
 
-export function initializeNodemailer(): Transporter {
+const initializeNodemailer = (): Transporter => {
   if (transporter) {
     return transporter;
   }
@@ -29,8 +29,7 @@ export function initializeNodemailer(): Transporter {
 
   transporter = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
-    port: 465,
-    secure: true,
+    port: 2525,
     auth: {
       user: process.env.MAILTRAP_USERNAME,
       pass: process.env.MAILTRAP_PASSWORD,
@@ -41,12 +40,12 @@ export function initializeNodemailer(): Transporter {
     if (error) {
       console.error(error);
     } else {
-      console.log("SMTP server is ready to take our messages!");
+      console.log("SMTP server is ready to take your messages!");
     }
   });
 
   return transporter;
-}
+};
 
 export type Mailer = {
   sendMail: (payload: IEmailData) => Promise<void>;
@@ -58,11 +57,11 @@ export default Object.freeze({
     try {
       const transporter = initializeNodemailer();
 
-      console.log(`Sending mail to ${payload.to?.join(",")}...`);
+      console.log(`Sending email to ${payload.to?.join(",")}...`);
 
       await transporter.sendMail(payload);
 
-      console.log(`Sent mail to ${payload.to?.join(",")}...`);
+      console.log(`Sent email to ${payload.to?.join(",")}...`);
     } catch (error) {
       console.error(error);
     }
@@ -75,7 +74,7 @@ export default Object.freeze({
     } catch (error) {
       console.error(error);
     }
-
-    return;
   },
 });
+
+export { initializeNodemailer };
