@@ -10,7 +10,7 @@ export interface IEmailData {
   sender?: string;
 }
 
-interface IGetEmailContent extends Omit<IEmailData, "text" | "sender"> {
+export interface IGetEmailContent extends Omit<IEmailData, "text" | "sender"> {
   type: string;
 }
 
@@ -37,7 +37,7 @@ export default function makeGetEmailContent({
     type,
     cc = [],
     bcc = [],
-  }: IGetEmailContent) {
+  }: IGetEmailContent): ReturnType<GetEmailContent> {
     const is_valid_receivers = !to || to.length;
     if (!is_valid_receivers) {
       console.log("Can not find any recipients to send email.");
