@@ -4,6 +4,7 @@ import { RootDispatch } from "@/store";
 
 const initialAxios = (dispatch: RootDispatch) => {
   axios.defaults.baseURL = `${process.env.REACT_APP_SERVER_URL}/api`;
+  axios.defaults.withCredentials = true;
 
   axios.interceptors.request.use((request: InternalAxiosRequestConfig) => {
     console.log(`Making request to ${request.url}`);
@@ -11,7 +12,6 @@ const initialAxios = (dispatch: RootDispatch) => {
     dispatch(SET_IS_LOADING(true));
 
     request.headers.set({
-      Authorization: localStorage.getItem("access_token"),
       "token-type": "bearer",
     });
 

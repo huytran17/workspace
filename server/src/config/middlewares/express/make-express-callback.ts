@@ -12,6 +12,7 @@ export default function makeExpressCallback(controller: Function) {
         params: req.params,
         body: req.body,
         method: req.method,
+        cookies: req.cookies,
         headers: {
           "Content-Type": req.get("Content-Type"),
           Referer: req.get("referer"),

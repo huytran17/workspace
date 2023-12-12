@@ -46,6 +46,11 @@ export default function makeLoginController({
       };
       const access_token = createAccessToken({ payload: jwt_payload });
 
+      const cookie_max_age = 60 * 60 * 24 * 365;
+      Object.assign(headers, {
+        "Set-Cookie": `access_token=Bearer ${access_token}; Max-Age=${cookie_max_age}; Path=/; HttpOnly`,
+      });
+
       return {
         headers,
         statusCode: http_status.OK,

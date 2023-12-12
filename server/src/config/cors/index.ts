@@ -2,11 +2,11 @@ import CORS from "cors";
 
 const whitelist = ["http://localhost:8082"];
 
-const cors_options_delegate = function (req, callback) {
-  let cors_options: Record<string, unknown>;
+const cors_options_delegate = function (req: any, callback: Function) {
+  let cors_options: { [key: string]: any };
 
   if (whitelist.includes(req.header("Origin"))) {
-    cors_options = { origin: true };
+    cors_options = { origin: true, credentials: true };
   } else {
     cors_options = { origin: false };
   }

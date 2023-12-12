@@ -34,10 +34,7 @@ const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
 
 const LOGIN = (payload: object) => async () => {
   try {
-    const { data } = await axios.post(`/auth/login`, payload);
-    const access_token = get(data, "access_token", "");
-
-    localStorage.setItem("access_token", access_token);
+    await axios.post(`/auth/login`, payload);
   } catch (error) {
     toastError({ message: "Encountered error while logging in" });
   }
