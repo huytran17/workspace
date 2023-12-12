@@ -48,7 +48,7 @@ export default function makeLoginController({
 
       const cookie_max_age = 60 * 60 * 24 * 365;
       Object.assign(headers, {
-        "Set-Cookie": `access_token=Bearer ${access_token}; Max-Age=${cookie_max_age}; Path=/; HttpOnly`,
+        "Set-Cookie": `access_token=${access_token}; Max-Age=${cookie_max_age}; Path=/; HttpOnly`,
       });
 
       return {

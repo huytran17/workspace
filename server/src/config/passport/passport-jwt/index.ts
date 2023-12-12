@@ -1,7 +1,11 @@
+import { Request } from "express";
 import { UserModel } from "@/database/models";
 import { isEmpty, isNil } from "lodash";
 import Passport from "passport";
 import passport_jwt, { StrategyOptions } from "passport-jwt";
+
+const extractAccessTokenFromRequest = (req: Request): string =>
+  req.cookies?.access_token || "";
 
 export default function makePassportJWT({
   passport,
@@ -10,10 +14,9 @@ export default function makePassportJWT({
 }) {
   return function passportJWT() {
     const JwtStrategy = passport_jwt.Strategy;
-    const ExtractJWT = passport_jwt.ExtractJwt;
 
     const options: StrategyOptions = {
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: extractAccessTokenFromRequest,
       secretOrKey: process.env.PASSPORT_JWT_SECRET_KEY,
     };
 
