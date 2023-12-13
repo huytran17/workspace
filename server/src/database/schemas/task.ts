@@ -13,8 +13,6 @@ const taskSchema = new Schema<ITask>(
     assignees: [{ type: Schema.Types.ObjectId, trim: true, default: [] }],
     links: [{ type: Schema.Types.ObjectId, trim: true, default: [] }],
     expires_at: { type: Date, default: null },
-    created_at: { type: Date, default: new Date() },
-    updated_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null },
   },
   {

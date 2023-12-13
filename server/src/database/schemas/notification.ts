@@ -13,8 +13,6 @@ const notificationSchema = new Schema<INotification>(
     status: { type: String, required: true, trim: true, enum: Status },
     task: { type: Schema.Types.ObjectId, required: true },
     content: { type: String, required: true, trim: true },
-    created_at: { type: Date, default: new Date() },
-    updated_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null },
   },
   {

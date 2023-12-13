@@ -8,8 +8,6 @@ const labelSchema = new Schema<ILabel>(
   {
     title: { type: String, required: true, trim: true },
     color: { type: String, required: true, trim: true },
-    created_at: { type: Date, default: new Date() },
-    updated_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null },
   },
   {
