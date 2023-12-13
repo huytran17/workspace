@@ -19,7 +19,9 @@ export default function makeUserDb({
           deleted_at: null,
         };
 
-        const users = await userDbModel.find(queryConditions);
+        const users = await userDbModel
+          .find(queryConditions)
+          .lean({ virtual: true });
         if (users.length) {
           return map(users, (user) => new User(user));
         }
@@ -37,7 +39,9 @@ export default function makeUserDb({
           deleted_at: null,
         };
 
-        const user = await userDbModel.findOne(queryConditions);
+        const user = await userDbModel
+          .findOne(queryConditions)
+          .lean({ virtual: true });
         if (user) {
           return new User(user);
         }
@@ -55,7 +59,9 @@ export default function makeUserDb({
           deleted_at: null,
         };
 
-        const user = await userDbModel.findOne(queryConditions);
+        const user = await userDbModel
+          .findOne(queryConditions)
+          .lean({ virtual: true });
         if (user) {
           return new User(user);
         }
