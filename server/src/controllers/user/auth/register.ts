@@ -1,8 +1,8 @@
 import { HashPassword } from "@/config/bcrypt/hash-password";
 import { http_status } from "@/config/constants/http-status";
 import IUser from "@/database/interfaces/user";
-import { CreateUser } from "@/use-cases/user/create-user";
-import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
+import { CreateUser } from "@/use-cases/user/user/create-user";
+import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
 import { get, isEmpty, isNil, omit } from "lodash";
 
 interface IPayload {

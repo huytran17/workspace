@@ -2,7 +2,7 @@ import { http_status } from "@/config/constants/http-status";
 import { GetEmailContent } from "@/config/mailer/get-email-content";
 import { RenderEmailContent } from "@/config/mailer/render-email-content";
 import { SendMail } from "@/config/mailer/send-email";
-import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
+import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
 import { get, isNil } from "lodash";
 
 interface IPayload {
