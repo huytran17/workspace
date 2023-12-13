@@ -7,15 +7,20 @@ import INotification, {
 
 const Schema = mongoose.Schema;
 
-const notificationSchema = new Schema<INotification>({
-  type: { type: String, required: true, trim: true, enum: NotificationType },
-  status: { type: String, required: true, trim: true, enum: Status },
-  task: { type: Schema.Types.ObjectId, required: true },
-  content: { type: String, required: true, trim: true },
-  created_at: { type: Date, default: new Date() },
-  updated_at: { type: Date, default: null },
-  deleted_at: { type: Date, default: null },
-});
+const notificationSchema = new Schema<INotification>(
+  {
+    type: { type: String, required: true, trim: true, enum: NotificationType },
+    status: { type: String, required: true, trim: true, enum: Status },
+    task: { type: Schema.Types.ObjectId, required: true },
+    content: { type: String, required: true, trim: true },
+    created_at: { type: Date, default: new Date() },
+    updated_at: { type: Date, default: null },
+    deleted_at: { type: Date, default: null },
+  },
+  {
+    toJSON: { virtuals: true },
+  }
+);
 
 notificationSchema.index({ created_at: -1 });
 
