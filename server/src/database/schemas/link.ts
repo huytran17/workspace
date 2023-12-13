@@ -14,6 +14,10 @@ const linkSchema = new Schema<ILink>(
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 

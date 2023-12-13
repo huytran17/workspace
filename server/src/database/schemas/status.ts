@@ -14,6 +14,10 @@ const statusSchema = new Schema<IStatus>(
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 

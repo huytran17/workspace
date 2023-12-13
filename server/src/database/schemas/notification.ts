@@ -19,6 +19,10 @@ const notificationSchema = new Schema<INotification>(
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 

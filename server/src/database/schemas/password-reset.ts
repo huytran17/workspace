@@ -13,6 +13,10 @@ const passwordResetSchema = new Schema(
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 

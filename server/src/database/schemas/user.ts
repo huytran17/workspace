@@ -10,12 +10,14 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true, trim: true },
     hash_password: { type: String, required: true, trim: true },
     ip: { type: Object },
-    created_at: { type: Date, default: new Date() },
-    updated_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null },
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 

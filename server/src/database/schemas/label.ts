@@ -14,6 +14,10 @@ const labelSchema = new Schema<ILabel>(
   },
   {
     toJSON: { virtuals: true },
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   }
 );
 
