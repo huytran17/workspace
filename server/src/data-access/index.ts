@@ -1,8 +1,13 @@
-import { UserModel } from "@/database/models";
+import { UserModel, PasswordResetModel } from "@/database/models";
 import makeUserDb from "./make-user-db";
+import makePasswordResetDb from "./make-password-reset-db";
 
 const userDb = makeUserDb({
   userDbModel: UserModel,
 });
 
-export { userDb };
+const passwordResetDb = makePasswordResetDb({
+  passwordResetDbModel: PasswordResetModel,
+});
+
+export { userDb, passwordResetDb };
