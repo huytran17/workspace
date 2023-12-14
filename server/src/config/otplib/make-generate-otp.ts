@@ -4,7 +4,7 @@ interface IPayload {
   options: { [key: string]: string };
 }
 
-export type GenerateOtp = ({ options }: IPayload) => string;
+export type GenerateOtp = ({ options }?: IPayload) => string;
 
 const default_options = {
   digits: 6,
