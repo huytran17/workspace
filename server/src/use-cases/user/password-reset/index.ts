@@ -1,7 +1,7 @@
+import { passwordResetDb } from "@/data-access";
 import makeCreatePasswordReset from "./create-password-reset";
 import makeGetPasswordResetByEmailAndCode from "./get-password-reset-by-email-and-code";
 import makeHardDeletePasswordReset from "./hard-delete-passwrod-reset";
-import { passwordResetDb } from "@/data-access";
 
 const createPasswordReset = makeCreatePasswordReset({ passwordResetDb });
 const getPasswordResetByEmailAndCode = makeGetPasswordResetByEmailAndCode({
@@ -21,6 +21,6 @@ export default passwordResetServices;
 
 export {
   createPasswordReset,
-  getPasswordResetByEmailAndCode,
   getHardDeletePasswordReset,
+  getPasswordResetByEmailAndCode,
 };
