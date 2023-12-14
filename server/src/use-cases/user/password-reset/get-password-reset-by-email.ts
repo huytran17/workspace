@@ -2,21 +2,21 @@ import IPasswordResetDb from "@/data-access/interfaces/password-reset-db";
 import IPasswordReset from "@/database/interfaces/password-reset";
 
 interface IPayload {
-  code: number;
+  email: string;
 }
 
-export type GetPasswordResetByCode = ({
-  code,
+export type GetPasswordResetByEmail = ({
+  email,
 }: IPayload) => Promise<IPasswordReset>;
 
-export default function makeGetPasswordResetByCode({
+export default function makeGetPasswordResetByEmail({
   passwordResetDb,
 }: {
   passwordResetDb: IPasswordResetDb;
-}): GetPasswordResetByCode {
-  return async function getPasswordResetByCode({
-    code,
+}): GetPasswordResetByEmail {
+  return async function getPasswordResetByEmail({
+    email,
   }: IPayload): Promise<IPasswordReset> {
-    return await passwordResetDb.findByCode({ code });
+    return await passwordResetDb.findByEmail({ email });
   };
 }
