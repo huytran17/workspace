@@ -8,6 +8,7 @@ export default interface IPasswordResetDb {
     email: string;
     code: string;
   }) => Promise<IPasswordReset>;
+  findByCode: ({ code }: { code: string }) => Promise<IPasswordReset>;
   insert: (
     payload: Omit<IPasswordReset, "_id" | "created_at" | "updated_at">
   ) => Promise<IPasswordReset>;
