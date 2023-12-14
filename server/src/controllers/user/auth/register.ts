@@ -3,12 +3,16 @@ import { http_status } from "@/config/constants/http-status";
 import IUser from "@/database/interfaces/user";
 import { CreateUser } from "@/use-cases/user/user/create-user";
 import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
-import { get, isEmpty, isNil, omit } from "lodash";
+import { get, isNil, omit } from "lodash";
 
-interface IPayload {
-  email: string;
-  fullname: string;
-  password: string;
+type OmitProps =
+  | "_id"
+  | "hash_password"
+  | "created_at"
+  | "updated_at"
+  | "deleted_at";
+
+interface IPayload extends Omit<IUser, OmitProps> {
   password_confirmation: string;
 }
 
