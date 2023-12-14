@@ -9,7 +9,6 @@ export default function makeGetUsers({
   userDb: IUserDb;
 }): GetUsers {
   return async function getUsers(): Promise<IUser[]> {
-    const users = await userDb.findAll();
-    return users;
+    return await userDb.findAll();
   };
 }

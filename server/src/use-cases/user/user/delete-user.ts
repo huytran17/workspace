@@ -13,7 +13,6 @@ export default function makeDeleteUser({
   userDb: IUserDb;
 }): DeleteUser {
   return async function deleteUser({ _id }: IUserDetails): Promise<IUser> {
-    const user = await userDb.delete({ _id });
-    return user;
+    return await userDb.delete({ _id });
   };
 }

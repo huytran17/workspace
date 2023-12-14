@@ -13,7 +13,6 @@ export default function makeGetUserById({
   userDb: IUserDb;
 }): GetUserById {
   return async function getUserById({ _id }: IUserDetails): Promise<IUser> {
-    const user = await userDb.findById({ _id });
-    return user;
+    return await userDb.findById({ _id });
   };
 }

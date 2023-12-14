@@ -15,7 +15,6 @@ export default function makeGetUserByEmail({
   return async function getUserByEmail({
     email,
   }: IUserDetails): Promise<IUser> {
-    const user = await userDb.findByEmail({ email });
-    return user;
+    return await userDb.findByEmail({ email });
   };
 }
