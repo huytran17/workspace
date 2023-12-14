@@ -29,8 +29,19 @@ export default function makePasswordResetDb({
       return null;
     }
 
-    async findByCode({ code }: { code: string }): Promise<IPasswordReset> {
+    async findByCode({ code }: { code: number }): Promise<IPasswordReset> {
       const query_conditions = { code };
+      const exists = await passwordResetDbModel.findOne(query_conditions);
+
+      if (exists) {
+        return new PasswordReset(exists);
+      }
+
+      return null;
+    }
+
+    async findByEmail({ email }: { email: string }): Promise<IPasswordReset> {
+      const query_conditions = { email };
       const exists = await passwordResetDbModel.findOne(query_conditions);
 
       if (exists) {
