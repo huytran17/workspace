@@ -3,20 +3,18 @@ import IUser from "@/database/interfaces/user";
 
 type OmitProps = "_id" | "created_at" | "updated_at" | "deleted_at";
 
-interface IUserDetails {
+interface IPayload {
   userDetails: Omit<IUser, OmitProps>;
 }
 
-export type CreateUser = ({ userDetails }: IUserDetails) => Promise<IUser>;
+export type CreateUser = ({ userDetails }: IPayload) => Promise<IUser>;
 
 export default function makeCreateUser({
   userDb,
 }: {
   userDb: IUserDb;
 }): CreateUser {
-  return async function createUser({
-    userDetails,
-  }: IUserDetails): Promise<IUser> {
+  return async function createUser({ userDetails }: IPayload): Promise<IUser> {
     return await userDb.insert(userDetails);
   };
 }

@@ -1,18 +1,18 @@
 import IUserDb from "@/data-access/interfaces/user-db";
 import IUser from "@/database/interfaces/user";
 
-interface IUserDetails {
+interface IPayload {
   _id: string;
 }
 
-export type HardDeleteUser = ({ _id }: IUserDetails) => Promise<IUser>;
+export type HardDeleteUser = ({ _id }: IPayload) => Promise<IUser>;
 
 export default function makeHardDeleteUser({
   userDb,
 }: {
   userDb: IUserDb;
 }): HardDeleteUser {
-  return async function hardDeleteUser({ _id }: IUserDetails): Promise<IUser> {
+  return async function hardDeleteUser({ _id }: IPayload): Promise<IUser> {
     return await userDb.hardDelete({ _id });
   };
 }
