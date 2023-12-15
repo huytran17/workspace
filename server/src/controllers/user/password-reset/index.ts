@@ -1,4 +1,4 @@
-import { verifyAccessToken } from "@/config/access-token";
+import { createAccessToken, verifyAccessToken } from "@/config/access-token";
 import { hashPassword } from "@/config/bcrypt";
 import { generateOtp } from "@/config/otp-generator";
 import {
@@ -10,17 +10,9 @@ import {
 } from "@/use-cases/user/password-reset";
 import { getUserByEmail, updateUser } from "@/use-cases/user/user";
 import moment from "moment";
-import makeCreatePasswordResetController from "./create-password-reset";
 import makeVerifyPasswordResetController from "./reset-password";
-
-const createPasswordResetController = makeCreatePasswordResetController({
-  getPasswordResetByEmail,
-  getPasswordResetByCode,
-  createPasswordReset,
-  hardDeletePasswordReset,
-  generateOtp,
-  moment,
-});
+import makeSendPasswordResetEmailController from "./send-password-reset-email";
+import { getEmailContent, renderEmailContent, sendMail } from "@/config/mailer";
 
 const verifyPasswordResetController = makeVerifyPasswordResetController({
   getUserByEmail,
@@ -31,11 +23,26 @@ const verifyPasswordResetController = makeVerifyPasswordResetController({
   moment,
 });
 
+const sendPasswordResetEmailController = makeSendPasswordResetEmailController({
+  getUserByEmail,
+  getPasswordResetByEmail,
+  getPasswordResetByCode,
+  hardDeletePasswordReset,
+  generateOtp,
+  createAccessToken,
+  createPasswordReset,
+  getEmailContent,
+  renderEmailContent,
+  sendMail,
+  moment,
+  DASHBOARD_URL: process.env.DASHBOARD_URL,
+});
+
 const passwordResetServices = Object.freeze({
-  createPasswordResetController,
   verifyPasswordResetController,
+  sendPasswordResetEmailController,
 });
 
 export default passwordResetServices;
 
-export { createPasswordResetController, verifyPasswordResetController };
+export { verifyPasswordResetController, sendPasswordResetEmailController };
