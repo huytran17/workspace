@@ -1,5 +1,6 @@
 import { createAccessToken, verifyAccessToken } from "@/config/access-token";
 import { hashPassword } from "@/config/bcrypt";
+import { getEmailContent, renderEmailContent, sendMail } from "@/config/mailer";
 import { generateOtp } from "@/config/otp-generator";
 import {
   createPasswordReset,
@@ -12,7 +13,6 @@ import { getUserByEmail, updateUser } from "@/use-cases/user/user";
 import moment from "moment";
 import makeVerifyPasswordResetController from "./reset-password";
 import makeSendPasswordResetEmailController from "./send-password-reset-email";
-import { getEmailContent, renderEmailContent, sendMail } from "@/config/mailer";
 
 const verifyPasswordResetController = makeVerifyPasswordResetController({
   getUserByEmail,
@@ -45,4 +45,4 @@ const passwordResetServices = Object.freeze({
 
 export default passwordResetServices;
 
-export { verifyPasswordResetController, sendPasswordResetEmailController };
+export { sendPasswordResetEmailController, verifyPasswordResetController };
