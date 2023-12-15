@@ -1,6 +1,6 @@
-const loginValidator = {
+const login_validator = {
   email: "required|email",
   password: "required|string",
 };
 
-export { loginValidator };
+export { login_validator };
