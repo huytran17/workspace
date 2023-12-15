@@ -1,6 +1,6 @@
 import _jwt from "jsonwebtoken";
 
-const defaultOptions: _jwt.SignOptions = {
+const default_options: _jwt.SignOptions = {
   expiresIn: "1y",
 };
 
@@ -28,7 +28,7 @@ export default function makeCreateAccessToken({
   }) {
     try {
       return jwt.sign(payload, PASSPORT_JWT_SECRET_KEY, {
-        ...defaultOptions,
+        ...default_options,
         ...options,
       });
     } catch (error) {
