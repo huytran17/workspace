@@ -5,6 +5,7 @@ import makeGetUserByEmail from "./get-user-by-email";
 import makeGetUserById from "./get-user-by-id";
 import makeGetUsers from "./get-users";
 import makeHardDeleteUser from "./hard-delete-user";
+import makeUpdateUser from "./update-user";
 
 const createUser = makeCreateUser({ userDb });
 const deleteUser = makeDeleteUser({ userDb });
@@ -12,6 +13,7 @@ const getUserByEmail = makeGetUserByEmail({ userDb });
 const getUserById = makeGetUserById({ userDb });
 const getUsers = makeGetUsers({ userDb });
 const hardDeleteUser = makeHardDeleteUser({ userDb });
+const updateUser = makeUpdateUser({ userDb });
 
 const userServices = Object.freeze({
   createUser,
@@ -20,6 +22,7 @@ const userServices = Object.freeze({
   getUserById,
   getUsers,
   hardDeleteUser,
+  updateUser,
 });
 
 export default userServices;
@@ -31,4 +34,5 @@ export {
   getUserById,
   getUsers,
   hardDeleteUser,
+  updateUser,
 };
