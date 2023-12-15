@@ -4,7 +4,7 @@ import { GetEmailContent } from "./get-email-content";
 
 interface IRenderEmailContent {
   content: IEmailData;
-  data: object;
+  data?: object;
 }
 
 export type RenderEmailContent = ({
@@ -21,7 +21,7 @@ export default function makeRenderEmailContent({
 }): RenderEmailContent {
   return function renderEmailContent({
     content,
-    data,
+    data = {},
   }: IRenderEmailContent): ReturnType<GetEmailContent> {
     const final_data = { ...default_data, ...data };
 

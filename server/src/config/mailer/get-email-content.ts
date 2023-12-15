@@ -1,16 +1,16 @@
 import { htmlToText } from "html-to-text";
 
 export interface IEmailData {
-  from: string;
+  from?: string;
   to: string[];
-  subject: string;
-  text: string;
+  subject?: string;
+  text?: string;
+  html?: string;
   cc?: string[];
   bcc?: string[];
-  sender?: string;
 }
 
-export interface IGetEmailContent extends Omit<IEmailData, "text" | "sender"> {
+export interface IGetEmailContent extends Omit<IEmailData, "text" | "html"> {
   type: string;
 }
 
@@ -20,7 +20,7 @@ export type GetEmailContent = ({
   type,
   cc,
   bcc,
-}: IGetEmailContent) => Omit<IEmailData, "sender">;
+}: IGetEmailContent) => IEmailData;
 
 export default function makeGetEmailContent({
   templates,
@@ -37,7 +37,7 @@ export default function makeGetEmailContent({
     type,
     cc = [],
     bcc = [],
-  }: IGetEmailContent): ReturnType<GetEmailContent> {
+  }: IGetEmailContent): IEmailData {
     const is_valid_receivers = !to || to.length;
     if (!is_valid_receivers) {
       console.log("Can not find any recipients to send email.");
