@@ -14,9 +14,7 @@ export default function makeGetPasswordResetByCode({
 }: {
   passwordResetDb: IPasswordResetDb;
 }): GetPasswordResetByCode {
-  return async function getPasswordResetByCode({
-    code,
-  }: IPayload): Promise<IPasswordReset> {
+  return async function getPasswordResetByCode({ code }) {
     return await passwordResetDb.findByCode({ code });
   };
 }

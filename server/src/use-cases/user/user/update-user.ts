@@ -12,7 +12,7 @@ export default function makeUpdateUser({
 }: {
   userDb: IUserDb;
 }): UpdateUser {
-  return async function updateUser({ userDetails }: IPayload): Promise<IUser> {
+  return async function updateUser({ userDetails }) {
     return await userDb.update(userDetails);
   };
 }

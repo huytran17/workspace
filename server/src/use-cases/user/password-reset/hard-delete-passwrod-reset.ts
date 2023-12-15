@@ -14,7 +14,7 @@ export default function makeHardDeletePasswordReset({
 }: {
   passwordResetDb: IPasswordResetDb;
 }): HardDeletePasswordReset {
-  return async function getHardDeletePasswordReset({ _id }: IPayload) {
+  return async function getHardDeletePasswordReset({ _id }) {
     return await passwordResetDb.hardDelete({ _id });
   };
 }

@@ -14,7 +14,7 @@ export default function makeCreateUser({
 }: {
   userDb: IUserDb;
 }): CreateUser {
-  return async function createUser({ userDetails }: IPayload): Promise<IUser> {
+  return async function createUser({ userDetails }) {
     return await userDb.insert(userDetails);
   };
 }

@@ -16,9 +16,7 @@ export default function makeCreatePasswordReset({
 }: {
   passwordResetDb: IPasswordResetDb;
 }): CreatePasswordReset {
-  return async function createPasswordReset({
-    passwordResetDetails,
-  }: IPayload): Promise<IPasswordReset> {
+  return async function createPasswordReset({ passwordResetDetails }) {
     return await passwordResetDb.insert(passwordResetDetails);
   };
 }

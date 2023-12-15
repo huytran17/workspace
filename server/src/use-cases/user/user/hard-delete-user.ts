@@ -12,7 +12,7 @@ export default function makeHardDeleteUser({
 }: {
   userDb: IUserDb;
 }): HardDeleteUser {
-  return async function hardDeleteUser({ _id }: IPayload): Promise<IUser> {
+  return async function hardDeleteUser({ _id }) {
     return await userDb.hardDelete({ _id });
   };
 }

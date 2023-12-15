@@ -12,7 +12,7 @@ export default function makeGetUserById({
 }: {
   userDb: IUserDb;
 }): GetUserById {
-  return async function getUserById({ _id }: IPayload): Promise<IUser> {
+  return async function getUserById({ _id }) {
     return await userDb.findById({ _id });
   };
 }

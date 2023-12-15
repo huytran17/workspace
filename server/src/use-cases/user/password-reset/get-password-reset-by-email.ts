@@ -14,9 +14,7 @@ export default function makeGetPasswordResetByEmail({
 }: {
   passwordResetDb: IPasswordResetDb;
 }): GetPasswordResetByEmail {
-  return async function getPasswordResetByEmail({
-    email,
-  }: IPayload): Promise<IPasswordReset> {
+  return async function getPasswordResetByEmail({ email }) {
     return await passwordResetDb.findByEmail({ email });
   };
 }
