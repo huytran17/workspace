@@ -1,6 +1,7 @@
 import { passwordResetDb } from "@/data-access";
 import makeCreatePasswordReset from "./create-password-reset";
 import makeGetPasswordResetByCode from "./get-password-reset-by-code";
+import makeGetPasswordResetByEmail from "./get-password-reset-by-email";
 import makeGetPasswordResetByEmailAndCode from "./get-password-reset-by-email-and-code";
 import makeHardDeletePasswordReset from "./hard-delete-passwrod-reset";
 
@@ -8,24 +9,30 @@ const createPasswordReset = makeCreatePasswordReset({ passwordResetDb });
 const getPasswordResetByEmailAndCode = makeGetPasswordResetByEmailAndCode({
   passwordResetDb,
 });
-const getHardDeletePasswordReset = makeHardDeletePasswordReset({
+const hardDeletePasswordReset = makeHardDeletePasswordReset({
   passwordResetDb,
 });
 
 const getPasswordResetByCode = makeGetPasswordResetByCode({ passwordResetDb });
 
+const getPasswordResetByEmail = makeGetPasswordResetByEmail({
+  passwordResetDb,
+});
+
 const passwordResetServices = Object.freeze({
   createPasswordReset,
   getPasswordResetByEmailAndCode,
-  getHardDeletePasswordReset,
+  hardDeletePasswordReset,
   getPasswordResetByCode,
+  getPasswordResetByEmail,
 });
 
 export default passwordResetServices;
 
 export {
   createPasswordReset,
-  getHardDeletePasswordReset,
+  hardDeletePasswordReset,
   getPasswordResetByCode,
+  getPasswordResetByEmail,
   getPasswordResetByEmailAndCode,
 };
