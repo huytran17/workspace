@@ -1,7 +1,7 @@
 import { IEmailData } from "./get-email-content";
 import { Mailer } from "./mailer";
 
-export type SendMail = (payload: IEmailData) => void;
+export type SendMail = (payload: IEmailData) => Promise<void>;
 
 export default function makeSendMail({ mailer }: { mailer: Mailer }): SendMail {
   return async function sendMail(payload: IEmailData): Promise<void> {
