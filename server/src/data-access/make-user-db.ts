@@ -22,6 +22,7 @@ export default function makeUserDb({
         const users = await userDbModel
           .find(queryConditions)
           .lean({ virtual: true });
+
         if (users.length) {
           return map(users, (user) => new User(user));
         }
@@ -42,6 +43,7 @@ export default function makeUserDb({
         const user = await userDbModel
           .findOne(queryConditions)
           .lean({ virtual: true });
+
         if (user) {
           return new User(user);
         }
@@ -62,6 +64,7 @@ export default function makeUserDb({
         const user = await userDbModel
           .findOne(queryConditions)
           .lean({ virtual: true });
+
         if (user) {
           return new User(user);
         }
@@ -87,9 +90,12 @@ export default function makeUserDb({
       }
     }
 
-    async update(payload: IUser): Promise<IUser> {
+    async update(payload: Partial<IUser>): Promise<IUser> {
       try {
-        const user = await userDbModel.findOneAndUpdate(payload);
+        const user = await userDbModel
+          .findOneAndUpdate(payload)
+          .lean({ virtual: true });
+
         if (user) {
           return new User(user);
         }
@@ -102,7 +108,10 @@ export default function makeUserDb({
 
     async delete({ _id }: { _id: string }): Promise<IUser> {
       try {
-        const user = await userDbModel.findByIdAndDelete({ _id });
+        const user = await userDbModel
+          .findByIdAndDelete({ _id })
+          .lean({ virtual: true });
+
         if (user) {
           return new User(user);
         }
@@ -115,7 +124,10 @@ export default function makeUserDb({
 
     async hardDelete({ _id }: { _id: string }): Promise<IUser> {
       try {
-        const user = await userDbModel.findOneAndUpdate({ _id });
+        const user = await userDbModel
+          .findOneAndUpdate({ _id })
+          .lean({ virtual: true });
+
         if (user) {
           return new User(user);
         }

@@ -20,7 +20,10 @@ export default function makePasswordResetDb({
       code: string;
     }): Promise<IPasswordReset> {
       const query_conditions = { email, code };
-      const exists = await passwordResetDbModel.findOne(query_conditions);
+
+      const exists = await passwordResetDbModel
+        .findOne(query_conditions)
+        .lean({ virtual: true });
 
       if (exists) {
         return new PasswordReset(exists);
@@ -31,7 +34,10 @@ export default function makePasswordResetDb({
 
     async findByCode({ code }: { code: number }): Promise<IPasswordReset> {
       const query_conditions = { code };
-      const exists = await passwordResetDbModel.findOne(query_conditions);
+
+      const exists = await passwordResetDbModel
+        .findOne(query_conditions)
+        .lean({ virtual: true });
 
       if (exists) {
         return new PasswordReset(exists);
@@ -42,7 +48,10 @@ export default function makePasswordResetDb({
 
     async findByEmail({ email }: { email: string }): Promise<IPasswordReset> {
       const query_conditions = { email };
-      const exists = await passwordResetDbModel.findOne(query_conditions);
+
+      const exists = await passwordResetDbModel
+        .findOne(query_conditions)
+        .lean({ virtual: true });
 
       if (exists) {
         return new PasswordReset(exists);
@@ -64,7 +73,9 @@ export default function makePasswordResetDb({
     }
 
     async update(payload: IPasswordReset): Promise<IPasswordReset> {
-      const updated = await passwordResetDbModel.findOneAndUpdate(payload);
+      const updated = await passwordResetDbModel
+        .findOneAndUpdate(payload)
+        .lean({ virtual: true });
 
       if (updated) {
         return new PasswordReset(updated);
@@ -74,7 +85,9 @@ export default function makePasswordResetDb({
     }
 
     async hardDelete({ _id }: { _id: string }): Promise<IPasswordReset> {
-      const deleted = await passwordResetDbModel.findByIdAndDelete({ _id });
+      const deleted = await passwordResetDbModel
+        .findByIdAndDelete({ _id })
+        .lean({ virtual: true });
 
       if (deleted) {
         return new PasswordReset(deleted);
