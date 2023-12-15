@@ -7,7 +7,7 @@ export default interface IUserDb {
   insert: (
     payload: Omit<IUser, "_id" | "created_at" | "updated_at" | "deleted_at">
   ) => Promise<IUser>;
-  update: (payload: IUser) => Promise<IUser>;
+  update: (payload: Partial<IUser>) => Promise<IUser>;
   delete: ({ _id }: { _id: string }) => Promise<IUser>;
   hardDelete: ({ _id }: { _id: string }) => Promise<IUser>;
 }
