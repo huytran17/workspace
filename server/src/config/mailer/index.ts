@@ -8,6 +8,7 @@ const getEmailContent = makeGetEmailContent({
   templates,
   subjects,
   default_sender: process.env.MAIL_SENDER,
+  default_from: process.env.MAIL_FROM,
 });
 
 const renderEmailContent = makeRenderEmailContent({

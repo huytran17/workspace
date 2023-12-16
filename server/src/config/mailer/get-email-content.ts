@@ -1,4 +1,4 @@
-import { htmlToText } from "html-to-text";
+import { convertHtmlToText } from "../html-to-text";
 
 export interface IEmailData {
   from?: string;
@@ -26,14 +26,16 @@ export default function makeGetEmailContent({
   templates,
   subjects,
   default_sender,
+  default_from,
 }: {
   templates: object;
   subjects: object;
   default_sender: string;
+  default_from: string;
 }): GetEmailContent {
   return function getEmailContent({
     from,
-    to,
+    to = [],
     type,
     cc = [],
     bcc = [],
@@ -47,10 +49,11 @@ export default function makeGetEmailContent({
     const subject = subjects[type];
     const template = templates[type];
 
-    const text_template = htmlToText(template);
+    const text_template = convertHtmlToText(template);
+    const final_from = from || default_from;
 
     return Object.freeze({
-      from: from || default_sender,
+      from: `${default_sender} ${final_from}`,
       to,
       subject,
       text: text_template,
