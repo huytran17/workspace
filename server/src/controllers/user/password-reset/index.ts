@@ -11,10 +11,10 @@ import {
 } from "@/use-cases/user/password-reset";
 import { getUserByEmail, updateUser } from "@/use-cases/user/user";
 import moment from "moment";
-import makeVerifyPasswordResetController from "./reset-password";
+import makeResetPasswordController from "./reset-password";
 import makeSendPasswordResetEmailController from "./send-password-reset-email";
 
-const verifyPasswordResetController = makeVerifyPasswordResetController({
+const resetPasswordController = makeResetPasswordController({
   getUserByEmail,
   getPasswordResetByEmailAndCode,
   updateUser,
@@ -39,10 +39,10 @@ const sendPasswordResetEmailController = makeSendPasswordResetEmailController({
 });
 
 const passwordResetServices = Object.freeze({
-  verifyPasswordResetController,
+  resetPasswordController,
   sendPasswordResetEmailController,
 });
 
 export default passwordResetServices;
 
-export { sendPasswordResetEmailController, verifyPasswordResetController };
+export { sendPasswordResetEmailController, resetPasswordController };

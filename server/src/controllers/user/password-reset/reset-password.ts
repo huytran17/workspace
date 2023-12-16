@@ -14,7 +14,7 @@ interface IPayload {
   password_confirmation: string;
 }
 
-export default function makeVerifyPasswordResetController({
+export default function makeResetPasswordController({
   getUserByEmail,
   getPasswordResetByEmailAndCode,
   updateUser,
@@ -29,7 +29,7 @@ export default function makeVerifyPasswordResetController({
   hashPassword: HashPassword;
   moment: typeof Moment;
 }) {
-  return async function verifyPasswordResetController(httpRequest: {
+  return async function resetPasswordController(httpRequest: {
     validated: {};
   }) {
     const headers = {

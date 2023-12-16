@@ -1,7 +1,7 @@
 import makeExpressCallback from "@/config/middlewares/express/make-express-callback";
 import makeValidator from "@/config/middlewares/validator/make-validator";
 import {
-  verifyPasswordResetController,
+  resetPasswordController,
   sendPasswordResetEmailController,
 } from "@/controllers/user/password-reset";
 import {
@@ -21,7 +21,7 @@ password_reset_router.post(
 password_reset_router.put(
   "/reset-password",
   makeValidator(reset_password_validator),
-  makeExpressCallback(verifyPasswordResetController)
+  makeExpressCallback(resetPasswordController)
 );
 
 export { password_reset_router };
