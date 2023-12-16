@@ -2,11 +2,11 @@ import { VerifyAccessToken } from "@/config/access-token/verify-access-token";
 import { HashPassword } from "@/config/bcrypt/hash-password";
 import { http_status } from "@/config/constants/http-status";
 import { GetPasswordResetByEmailAndCode } from "@/use-cases/user/password-reset/get-password-reset-by-email-and-code";
+import { HardDeletePasswordReset } from "@/use-cases/user/password-reset/hard-delete-passwrod-reset";
 import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
 import { UpdateUser } from "@/use-cases/user/user/update-user";
 import { JwtPayload } from "jsonwebtoken";
 import { get, isNil } from "lodash";
-import Moment from "moment";
 
 interface IPayload {
   token: string;
@@ -20,14 +20,14 @@ export default function makeResetPasswordController({
   updateUser,
   verifyAccessToken,
   hashPassword,
-  moment,
+  hardDeletePasswordReset,
 }: {
   getUserByEmail: GetUserByEmail;
   getPasswordResetByEmailAndCode: GetPasswordResetByEmailAndCode;
   updateUser: UpdateUser;
   verifyAccessToken: VerifyAccessToken;
   hashPassword: HashPassword;
-  moment: typeof Moment;
+  hardDeletePasswordReset: HardDeletePasswordReset;
 }) {
   return async function resetPasswordController(httpRequest: {
     validated: {};
@@ -37,9 +37,7 @@ export default function makeResetPasswordController({
     };
 
     try {
-      const { token, password, password_confirmation } = <IPayload>(
-        get(httpRequest, "validated", {})
-      );
+      const { token, password } = <IPayload>get(httpRequest, "validated", {});
 
       const { email, code } = <JwtPayload>verifyAccessToken({ token });
 
@@ -57,21 +55,13 @@ export default function makeResetPasswordController({
         throw new Error("Invalid password reset information.");
       }
 
-      const is_expired = moment(password_reset_exists.expires_at).isAfter(
-        moment()
-      );
-
-      if (is_expired) {
-        throw new Error("Password reset has been expired.");
-      }
-
-      if (password !== password_confirmation) {
-        throw new Error("Password confirmation does not match.");
-      }
-
       const hashed_password = await hashPassword({ password });
       const final_user = { ...user_exists, hash_password: hashed_password };
-      const updated_user = await updateUser({ userDetails: final_user });
+
+      const [updated_user] = await Promise.all([
+        updateUser({ userDetails: final_user }),
+        hardDeletePasswordReset({ _id: password_reset_exists._id }),
+      ]);
 
       return {
         headers,

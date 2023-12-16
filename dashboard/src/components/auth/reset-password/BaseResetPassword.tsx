@@ -4,6 +4,7 @@ import { passwordResetRules } from "@/validation/password-reset";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import "./style.scss";
 
 type ResetPasswordDetails = {
   password: string;

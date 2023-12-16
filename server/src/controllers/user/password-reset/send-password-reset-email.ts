@@ -11,7 +11,6 @@ import { GetPasswordResetByEmail } from "@/use-cases/user/password-reset/get-pas
 import { HardDeletePasswordReset } from "@/use-cases/user/password-reset/hard-delete-passwrod-reset";
 import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
 import { get, isNil } from "lodash";
-import Moment from "moment";
 
 interface IPayload {
   email: string;
@@ -28,7 +27,6 @@ export default function makeSendPasswordResetEmailController({
   getEmailContent,
   renderEmailContent,
   sendMail,
-  moment,
   DASHBOARD_URL,
 }: {
   getUserByEmail: GetUserByEmail;
@@ -41,7 +39,6 @@ export default function makeSendPasswordResetEmailController({
   getEmailContent: GetEmailContent;
   renderEmailContent: RenderEmailContent;
   sendMail: SendMail;
-  moment: typeof Moment;
   DASHBOARD_URL: string;
 }) {
   return async function sendPasswordResetEmailController(httpRequest: {
@@ -70,15 +67,14 @@ export default function makeSendPasswordResetEmailController({
         exists_by_code = await getPasswordResetByCode({ code: otp });
       } while (!isNil(exists_by_code));
 
-      const expires_at = moment().add(5, "m").toDate();
-      const password_reset_payload = { email, code: otp, expires_at };
+      const password_reset_payload = { email, code: otp };
 
       await createPasswordReset({
         passwordResetDetails: password_reset_payload,
       });
 
       const jwt_token = createAccessToken({
-        payload: { email, otp },
+        payload: { email, code: otp },
         options: { expiresIn: "5m" },
       });
 

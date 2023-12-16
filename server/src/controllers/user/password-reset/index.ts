@@ -10,7 +10,6 @@ import {
   hardDeletePasswordReset,
 } from "@/use-cases/user/password-reset";
 import { getUserByEmail, updateUser } from "@/use-cases/user/user";
-import moment from "moment";
 import makeResetPasswordController from "./reset-password";
 import makeSendPasswordResetEmailController from "./send-password-reset-email";
 
@@ -20,7 +19,7 @@ const resetPasswordController = makeResetPasswordController({
   updateUser,
   verifyAccessToken,
   hashPassword,
-  moment,
+  hardDeletePasswordReset,
 });
 
 const sendPasswordResetEmailController = makeSendPasswordResetEmailController({
@@ -34,7 +33,6 @@ const sendPasswordResetEmailController = makeSendPasswordResetEmailController({
   getEmailContent,
   renderEmailContent,
   sendMail,
-  moment,
   DASHBOARD_URL: process.env.DASHBOARD_URL,
 });
 
