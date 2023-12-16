@@ -1,5 +1,5 @@
-import makeHtmlToText from "./make-html-to-text";
+import makeConvertHtmlToText from "./make-html-to-text";
 
-const htmlToText = makeHtmlToText();
+const convertHtmlToText = makeConvertHtmlToText();
 
-export { htmlToText };
+export { convertHtmlToText };

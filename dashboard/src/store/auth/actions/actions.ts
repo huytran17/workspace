@@ -41,6 +41,8 @@ const LOGIN = (payload: object) => async () => {
 
 const SEND_PASSWORD_RESET_EMAIL = (payload: { email: string }) => async () => {
   try {
+    console.log("-----------", payload);
+
     await axios.post("/password-reset/send-password-reset-email", payload);
   } catch (error) {
     console.error(error);

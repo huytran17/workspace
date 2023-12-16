@@ -3,7 +3,7 @@ import { http_status } from "@/config/constants/http-status";
 import { GetEmailContent } from "@/config/mailer/get-email-content";
 import { RenderEmailContent } from "@/config/mailer/render-email-content";
 import { SendMail } from "@/config/mailer/send-email";
-import { GenerateOtp } from "@/config/otp-generator/make-generate-otp";
+import { GenerateRandomString } from "@/config/randomstring/make-generate-random-string";
 import IPasswordReset from "@/database/interfaces/password-reset";
 import { CreatePasswordReset } from "@/use-cases/user/password-reset/create-password-reset";
 import { GetPasswordResetByCode } from "@/use-cases/user/password-reset/get-password-reset-by-code";
@@ -22,7 +22,7 @@ export default function makeSendPasswordResetEmailController({
   getPasswordResetByEmail,
   getPasswordResetByCode,
   hardDeletePasswordReset,
-  generateOtp,
+  generateRandomString,
   createAccessToken,
   createPasswordReset,
   getEmailContent,
@@ -35,7 +35,7 @@ export default function makeSendPasswordResetEmailController({
   getPasswordResetByEmail: GetPasswordResetByEmail;
   getPasswordResetByCode: GetPasswordResetByCode;
   hardDeletePasswordReset: HardDeletePasswordReset;
-  generateOtp: GenerateOtp;
+  generateRandomString: GenerateRandomString;
   createAccessToken: CreateAccessToken;
   createPasswordReset: CreatePasswordReset;
   getEmailContent: GetEmailContent;
@@ -65,7 +65,8 @@ export default function makeSendPasswordResetEmailController({
 
       let otp: number, exists_by_code: IPasswordReset;
       do {
-        otp = <number>generateOtp();
+        otp = <number>generateRandomString({ charset: "numeric", length: 6 });
+
         exists_by_code = await getPasswordResetByCode({ code: otp });
       } while (!isNil(exists_by_code));
 
@@ -83,7 +84,7 @@ export default function makeSendPasswordResetEmailController({
 
       const email_content = getEmailContent({
         to: [email],
-        type: "reset-password",
+        type: "forget-password",
       });
 
       const reset_password_url = `${DASHBOARD_URL}/auth/reset-password?token=${jwt_token}`;
@@ -92,7 +93,13 @@ export default function makeSendPasswordResetEmailController({
         data: { reset_password_url },
       });
 
-      sendMail(rendered_email_content);
+      await sendMail(rendered_email_content);
+
+      return {
+        headers,
+        statusCode: http_status.OK,
+        body: {},
+      };
     } catch (error) {
       throw {
         headers,

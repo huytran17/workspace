@@ -1,7 +1,7 @@
 import { createAccessToken, verifyAccessToken } from "@/config/access-token";
 import { hashPassword } from "@/config/bcrypt";
 import { getEmailContent, renderEmailContent, sendMail } from "@/config/mailer";
-import { generateOtp } from "@/config/otp-generator";
+import { generateRandomString } from "@/config/randomstring";
 import {
   createPasswordReset,
   getPasswordResetByCode,
@@ -28,7 +28,7 @@ const sendPasswordResetEmailController = makeSendPasswordResetEmailController({
   getPasswordResetByEmail,
   getPasswordResetByCode,
   hardDeletePasswordReset,
-  generateOtp,
+  generateRandomString,
   createAccessToken,
   createPasswordReset,
   getEmailContent,

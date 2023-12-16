@@ -24,8 +24,12 @@ const BaseSendPasswordResetEmailForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const sendPasswordResetEmail = () =>
-    dispatch(SEND_PASSWORD_RESET_EMAIL(form.getFieldValue("email")));
+  const sendPasswordResetEmail = () => {
+    const payload = {
+      email: form.getFieldValue("email"),
+    };
+    dispatch(SEND_PASSWORD_RESET_EMAIL(payload));
+  };
 
   return (
     <div className="forget-password">

@@ -10,8 +10,8 @@ export type HtmlToText = ({
   options?: object;
 }) => string;
 
-export default function makeHtmlToText(): HtmlToText {
-  return function htmlToText({
+export default function makeConvertHtmlToText(): HtmlToText {
+  return function convertHtmlToText({
     html,
     options = {},
   }: {

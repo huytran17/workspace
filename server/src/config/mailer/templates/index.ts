@@ -10,7 +10,7 @@ const subjects = {
 
 const templates = {
   "forget-password": fs.readFileSync(
-    `${__dirname}/html/forget-password`,
+    `${__dirname}/html/forget-password.html`,
     "utf-8"
   ),
 };
