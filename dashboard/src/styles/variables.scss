@@ -1,0 +1,8 @@
+@import "@/styles/functions";
+
+$breakpoint-extra-small: toRem(375);
+$breakpoint-mobile: toRem(576);
+$breakpoint-tablet: toRem(768);
+$breakpoint-desktop: toRem(992);
+$breakpoint-large-desktop: toRem(1200);
+$breakpoint-extra-large: toRem(1400);
