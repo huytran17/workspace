@@ -1,15 +1,9 @@
 import { Rule } from "antd/es/form";
 
-const registrationRules = {
+const passwordResetRules = {
   email: [
     { required: true, message: "Please input your email." },
     { type: "email", message: "Email format is invalid." },
-  ] as Rule[],
-  fullname: [
-    { required: true, message: "Please input your fullname." },
-    { type: "string", message: "Numeric characters are not accepted." },
-    { min: 2, message: "Please enter at least 2 characters." },
-    { max: 40, message: "Please enter at most 40 characters." },
   ] as Rule[],
   password: [
     { required: true, message: "Please input your password." },
@@ -34,4 +28,4 @@ const registrationRules = {
   ] as Rule[],
 };
 
-export { registrationRules };
+export { passwordResetRules };
