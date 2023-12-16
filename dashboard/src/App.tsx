@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { routes } from "./routes";
+import appRouter from "./routes";
 import { keyGenerator } from "./utils/key-generator";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
       <div className="App">
         <Suspense>
           <Routes>
-            {routes.map((route) => (
+            {appRouter.map((route) => (
               <Route
                 key={keyGenerator()}
                 path={route.path}
