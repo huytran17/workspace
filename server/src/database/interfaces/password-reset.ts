@@ -4,5 +4,4 @@ export default interface IPasswordReset {
   code: number;
   created_at: Date;
   updated_at: Date;
-  expires_at: Date;
 }

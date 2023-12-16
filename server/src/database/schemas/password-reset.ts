@@ -7,7 +7,6 @@ const passwordResetSchema = new Schema(
   {
     email: { type: String, required: true },
     code: { type: Number, required: true },
-    expires_at: { type: Date, default: null },
   },
   {
     toJSON: { virtuals: true },
