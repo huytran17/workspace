@@ -70,7 +70,8 @@ export default Object.freeze({
   render: ({ content, data }: { content: string; data: object }): string => {
     try {
       const compiled_content = handlebars.compile(content);
-      return compiled_content({ ...data });
+
+      return compiled_content(data);
     } catch (error) {
       console.error(error);
     }

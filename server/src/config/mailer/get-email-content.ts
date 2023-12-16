@@ -49,7 +49,7 @@ export default function makeGetEmailContent({
     const subject = subjects[type];
     const template = templates[type];
 
-    const text_template = convertHtmlToText(template);
+    const text_template = convertHtmlToText({ html: template });
     const final_from = from || default_from;
 
     return Object.freeze({

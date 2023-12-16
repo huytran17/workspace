@@ -30,11 +30,21 @@ export default function makeRenderEmailContent({
       data: final_data,
     });
 
+    const rendered_html = mailer.render({
+      content: content.html,
+      data: final_data,
+    });
+
     const rendered_text = mailer.render({
       content: content.text,
       data: final_data,
     });
 
-    return { ...content, text: rendered_text, subject: rendered_subject };
+    return {
+      ...content,
+      text: rendered_text,
+      html: rendered_html,
+      subject: rendered_subject,
+    };
   };
 }
