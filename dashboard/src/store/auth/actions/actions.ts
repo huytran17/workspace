@@ -1,8 +1,7 @@
-import { RootDispatch } from "@/store";
-import { ActionTypes } from "./action-types";
-import axios from "axios";
-import { get } from "lodash";
 import { toastError } from "@/config/toast";
+import { RootDispatch } from "@/store";
+import axios from "axios";
+import { ActionTypes } from "./action-types";
 
 const SET_HAS_USER = (payload: boolean) => ({
   type: ActionTypes.SET_HAS_USER,
@@ -40,4 +39,34 @@ const LOGIN = (payload: object) => async () => {
   }
 };
 
-export { SET_HAS_USER, SET_USER_DATA, UPDATE_USER_DATA, REGISTER, LOGIN };
+const SEND_PASSWORD_RESET_EMAIL = (payload: { email: string }) => async () => {
+  try {
+    await axios.post("/password-reset/send-password-reset-email", payload);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const RESET_PASSWORD =
+  (payload: {
+    token: string;
+    password: string;
+    password_confirmation: string;
+  }) =>
+  async () => {
+    try {
+      await axios.put("/password-reset/reset-password", payload);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+export {
+  LOGIN,
+  REGISTER,
+  SET_HAS_USER,
+  SET_USER_DATA,
+  UPDATE_USER_DATA,
+  SEND_PASSWORD_RESET_EMAIL,
+  RESET_PASSWORD,
+};
