@@ -1,3 +1,6 @@
+@import "@/styles/functions";
+@import "@/styles/variables";
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,4 +10,20 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.App {
+  padding: 0 toRem(64);
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    padding: 0 toRem(48);
+  }
+
+  @media only screen and (max-width: $breakpoint-mobile) {
+    padding: 0 toRem(32);
+  }
+
+  @media only screen and (max-width: $breakpoint-extra-small) {
+    padding: 0 toRem(16);
+  }
 }
