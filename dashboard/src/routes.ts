@@ -1,10 +1,10 @@
 import { ComponentType, lazy } from "react";
-const BaseRegistrationForm = lazy(
-  () => import("./components/auth/registration/BaseRegistrationForm")
+const RegistrationPage = lazy(() => import("./pages/auth/registration"));
+const LoginPage = lazy(() => import("./pages/auth/login"));
+const SendPasswordResetEmailPage = lazy(
+  () => import("./pages/auth/forget-password")
 );
-const BaseLoginForm = lazy(
-  () => import("./components/auth/login/BaseLoginForm")
-);
+const ResetPasswordPage = lazy(() => import("./pages/auth/reset-password"));
 
 interface IRoute {
   path: string;
@@ -14,11 +14,19 @@ interface IRoute {
 const routes: IRoute[] = [
   {
     path: "/auth/registration",
-    component: BaseRegistrationForm,
+    component: RegistrationPage,
   },
   {
     path: "/auth/login",
-    component: BaseLoginForm,
+    component: LoginPage,
+  },
+  {
+    path: "/auth/forget-password",
+    component: SendPasswordResetEmailPage,
+  },
+  {
+    path: "/auth/reset-password",
+    component: ResetPasswordPage,
   },
 ];
 
