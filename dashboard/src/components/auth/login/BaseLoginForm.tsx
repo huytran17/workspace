@@ -21,12 +21,8 @@ const BaseLoginForm: FC<{}> = () => {
 
   useEffect(() => {
     form.validateFields({ validateOnly: true }).then(
-      () => {
-        setSubmittable(true);
-      },
-      () => {
-        setSubmittable(false);
-      }
+      () => setSubmittable(true),
+      () => setSubmittable(false)
     );
   }, [values]);
 
