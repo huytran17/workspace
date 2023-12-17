@@ -1,6 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { SET_IS_LOADING } from "@/store/system/actions/actions";
 import { RootDispatch } from "@/store";
+import { toastError } from "@/config/toast";
 
 const initialAxios = (dispatch: RootDispatch) => {
   axios.defaults.baseURL = `${process.env.REACT_APP_SERVER_URL}/api`;
@@ -10,10 +11,6 @@ const initialAxios = (dispatch: RootDispatch) => {
     console.log(`Making request to ${request.url}`);
 
     dispatch(SET_IS_LOADING(true));
-
-    request.headers.set({
-      "token-type": "bearer",
-    });
 
     return request;
   });
@@ -28,6 +25,7 @@ const initialAxios = (dispatch: RootDispatch) => {
     },
     (error) => {
       dispatch(SET_IS_LOADING(false));
+      toastError({ message: "Encountered error occurred." });
       return Promise.reject(error);
     }
   );
