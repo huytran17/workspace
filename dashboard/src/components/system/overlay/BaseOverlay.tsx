@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { Spin } from "antd";
-import "./styles.scss";
-import { useSelector } from "react-redux";
+import { useRootSelector } from "@/hooks/redux";
 import { systemSelectors } from "@/store/system/states/selectors";
+import { Spin } from "antd";
+import { FC } from "react";
+import "./styles.scss";
 
 const BaseOverlay: FC<{}> = () => {
-  const isLoading = useSelector(systemSelectors.isLoading);
+  const isLoading = useRootSelector(systemSelectors.isLoading);
 
   return (
     <>

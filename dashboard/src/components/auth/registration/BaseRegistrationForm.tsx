@@ -6,6 +6,7 @@ import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
+import { systemSelectors } from "@/store/system/states/selectors";
 
 type RegistrationDetails = {
   email: string;
@@ -18,6 +19,7 @@ const BaseRegistrationForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
   const user = useRootSelector(authSelectors.user);
+  const isLoading = useRootSelector(systemSelectors.isLoading);
 
   const [submittable, setSubmittable] = useState(false);
 
@@ -123,7 +125,7 @@ const BaseRegistrationForm: FC<{}> = () => {
           <Button
             type="primary"
             htmlType="submit"
-            disabled={!submittable}
+            disabled={!submittable || isLoading}
             onClick={() => register()}
           >
             Submit

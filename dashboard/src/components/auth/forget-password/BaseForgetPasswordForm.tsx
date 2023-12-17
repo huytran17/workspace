@@ -1,10 +1,11 @@
-import { useRootDispatch } from "@/hooks/redux";
+import { useRootDispatch, useRootSelector } from "@/hooks/redux";
 import { SEND_PASSWORD_RESET_EMAIL } from "@/store/auth/actions/actions";
+import { systemSelectors } from "@/store/system/states/selectors";
 import { passwordResetRules } from "@/validation/password-reset";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
-import "./style.scss";
 import { useNavigate } from "react-router-dom";
+import "./style.scss";
 
 type PasswordResetDetails = {
   email: string;
@@ -13,6 +14,7 @@ type PasswordResetDetails = {
 const BaseForgetPasswordForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
+  const isLoading = useRootSelector(systemSelectors.isLoading);
 
   const [submittable, setSubmittable] = useState(false);
 
@@ -65,7 +67,7 @@ const BaseForgetPasswordForm: FC<{}> = () => {
           <Button
             type="primary"
             htmlType="submit"
-            disabled={!submittable}
+            disabled={!submittable || isLoading}
             onClick={() => sendPasswordResetEmail()}
           >
             Submit
