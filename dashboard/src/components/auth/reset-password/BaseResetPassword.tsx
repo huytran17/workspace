@@ -5,6 +5,7 @@ import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./style.scss";
+import BaseOverlay from "@/components/system/overlay/BaseOverlay";
 
 type ResetPasswordDetails = {
   password: string;
@@ -48,6 +49,7 @@ const BaseResetPassword: FC<{}> = () => {
 
   return (
     <div className="reset-password">
+      <BaseOverlay />
       <Form
         form={form}
         name="basic"

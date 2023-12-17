@@ -17,7 +17,7 @@ type RegistrationDetails = {
 const BaseRegistrationForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
-  const user = useRootSelector(authSelectors.selectUser);
+  const user = useRootSelector(authSelectors.user);
 
   const [submittable, setSubmittable] = useState(false);
 

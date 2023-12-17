@@ -15,7 +15,7 @@ type LoginDetails = {
 const BaseLoginForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
-  const user = useRootSelector(authSelectors.selectUser);
+  const user = useRootSelector(authSelectors.user);
 
   const [submittable, setSubmittable] = useState(false);
   const [form] = Form.useForm();

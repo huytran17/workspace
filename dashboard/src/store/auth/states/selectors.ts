@@ -1,8 +1,8 @@
 import { type RootState } from "@/store";
 
 const authSelectors = {
-  selectHasUser: (state: RootState) => state.auth.hasUser,
-  selectUser: (state: RootState) => state.auth.user,
+  hasUser: (state: RootState) => state.auth.hasUser,
+  user: (state: RootState) => state.auth.user,
 };
 
 export default authSelectors;
