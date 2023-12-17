@@ -26,7 +26,13 @@ const BaseLoginForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const login = () => dispatch(LOGIN(user));
+  const login = () => {
+    try {
+      submittable && dispatch(LOGIN(user));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="login">

@@ -29,7 +29,13 @@ const BaseRegistrationForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const register = () => submittable && dispatch(REGISTER(user));
+  const register = () => {
+    try {
+      submittable && dispatch(REGISTER(user));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="registration">

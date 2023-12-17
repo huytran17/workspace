@@ -3,7 +3,7 @@ import { RESET_PASSWORD } from "@/store/auth/actions/actions";
 import { passwordResetRules } from "@/validation/password-reset";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./style.scss";
 
 type ResetPasswordDetails = {
@@ -12,6 +12,7 @@ type ResetPasswordDetails = {
 };
 
 const BaseResetPassword: FC<{}> = () => {
+  const navigate = useNavigate();
   const dispatch = useRootDispatch();
   const [searchParams] = useSearchParams();
   const [submittable, setSubmittable] = useState(false);
@@ -26,13 +27,21 @@ const BaseResetPassword: FC<{}> = () => {
     );
   }, [values]);
 
-  const resetPassword = () => {
-    const payload = {
-      token: searchParams.get("token") || "",
-      password: form.getFieldValue("password"),
-      password_confirmation: form.getFieldValue("password_confirmation"),
-    };
-    dispatch(RESET_PASSWORD(payload));
+  const resetPassword = async () => {
+    try {
+      const payload = {
+        token: searchParams.get("token") || "",
+        password: form.getFieldValue("password"),
+        password_confirmation: form.getFieldValue("password_confirmation"),
+      };
+
+      if (submittable) {
+        await dispatch(RESET_PASSWORD(payload));
+        navigate("/auth/login");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
