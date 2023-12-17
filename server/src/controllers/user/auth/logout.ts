@@ -27,9 +27,8 @@ export default function makeLogoutController({
       return {
         headers,
         statusCode: http_status.OK,
-        body: {
-          success: true,
-        },
+        isLogOut: true,
+        body: {},
       };
     } catch (error) {
       throw {

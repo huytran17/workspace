@@ -63,7 +63,7 @@ export default function makeRegisterController({
       return {
         headers,
         statusCode: http_status.CREATED,
-        body: omit(user, ["hash_password"]),
+        body: {},
       };
     } catch (error) {
       throw {
