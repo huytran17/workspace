@@ -25,6 +25,11 @@ export default function makeExpressCallback(controller: Function) {
           response.headers && res.set(response.headers);
           res.type("json");
           res.status(response.statusCode).send(response.body);
+
+          if (response.isLogOut) {
+            res.clearCookie("access_token", { path: "/" });
+          }
+
           next();
         })
         .catch((error: any) => {

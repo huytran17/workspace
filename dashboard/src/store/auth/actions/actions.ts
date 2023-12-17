@@ -1,4 +1,3 @@
-import { RootDispatch } from "@/store";
 import axios from "axios";
 import { ActionTypes } from "./action-types";
 
@@ -17,13 +16,8 @@ const UPDATE_USER_DATA = (payload: { path: string; data: any }) => ({
   payload,
 });
 
-const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
-  const { data } = await axios.post(`/auth/register`, payload);
-
-  dispatch({
-    type: ActionTypes.SET_USER_DATA,
-    payload: data,
-  });
+const REGISTER = (payload: object) => async () => {
+  await axios.post(`/auth/register`, payload);
 };
 
 const LOGIN = (payload: object) => async () => {
