@@ -1,4 +1,3 @@
-import { toastError } from "@/config/toast";
 import { RootDispatch } from "@/store";
 import axios from "axios";
 import { ActionTypes } from "./action-types";
@@ -19,34 +18,20 @@ const UPDATE_USER_DATA = (payload: { path: string; data: any }) => ({
 });
 
 const REGISTER = (payload: object) => async (dispatch: RootDispatch) => {
-  try {
-    const { data } = await axios.post(`/auth/register`, payload);
+  const { data } = await axios.post(`/auth/register`, payload);
 
-    dispatch({
-      type: ActionTypes.SET_USER_DATA,
-      payload: data,
-    });
-  } catch (error) {
-    toastError({ message: "Encountered error while registering user" });
-  }
+  dispatch({
+    type: ActionTypes.SET_USER_DATA,
+    payload: data,
+  });
 };
 
 const LOGIN = (payload: object) => async () => {
-  try {
-    await axios.post(`/auth/login`, payload);
-  } catch (error) {
-    toastError({ message: "Encountered error while logging in" });
-  }
+  await axios.post(`/auth/login`, payload);
 };
 
 const SEND_PASSWORD_RESET_EMAIL = (payload: { email: string }) => async () => {
-  try {
-    console.log("-----------", payload);
-
-    await axios.post("/password-reset/send-password-reset-email", payload);
-  } catch (error) {
-    console.error(error);
-  }
+  await axios.post("/password-reset/send-password-reset-email", payload);
 };
 
 const RESET_PASSWORD =
@@ -56,11 +41,7 @@ const RESET_PASSWORD =
     password_confirmation: string;
   }) =>
   async () => {
-    try {
-      await axios.put("/password-reset/reset-password", payload);
-    } catch (error) {
-      console.error(error);
-    }
+    await axios.put("/password-reset/reset-password", payload);
   };
 
 export {
