@@ -1,5 +1,5 @@
 import { useRootDispatch, useRootSelector } from "@/hooks/redux";
-import { LOGIN, UPDATE_USER_DATA } from "@/store/auth/actions/actions";
+import { LOGIN } from "@/store/auth/actions/actions";
 import authSelectors from "@/store/auth/states/selectors";
 import { systemSelectors } from "@/store/system/states/selectors";
 import { loginRules } from "@/validation";
@@ -16,7 +16,6 @@ type LoginDetails = {
 const BaseLoginForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
-  const user = useRootSelector(authSelectors.user);
   const isLoading = useRootSelector(systemSelectors.isLoading);
 
   const [submittable, setSubmittable] = useState(false);

@@ -1,5 +1,5 @@
 import { useRootDispatch, useRootSelector } from "@/hooks/redux";
-import { REGISTER, UPDATE_USER_DATA } from "@/store/auth/actions/actions";
+import { REGISTER } from "@/store/auth/actions/actions";
 import authSelectors from "@/store/auth/states/selectors";
 import { registrationRules } from "@/validation";
 import { Button, Form, Input } from "antd";
@@ -18,7 +18,6 @@ type RegistrationDetails = {
 const BaseRegistrationForm: FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
-  const user = useRootSelector(authSelectors.user);
   const isLoading = useRootSelector(systemSelectors.isLoading);
 
   const [submittable, setSubmittable] = useState(false);
