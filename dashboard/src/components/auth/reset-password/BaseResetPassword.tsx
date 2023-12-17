@@ -29,16 +29,18 @@ const BaseResetPassword: FC<{}> = () => {
 
   const resetPassword = async () => {
     try {
+      if (!submittable) {
+        return;
+      }
+
       const payload = {
         token: searchParams.get("token") || "",
         password: form.getFieldValue("password"),
         password_confirmation: form.getFieldValue("password_confirmation"),
       };
 
-      if (submittable) {
-        await dispatch(RESET_PASSWORD(payload));
-        navigate("/auth/login");
-      }
+      await dispatch(RESET_PASSWORD(payload));
+      navigate("/auth/login");
     } catch (error) {
       console.error(error);
     }

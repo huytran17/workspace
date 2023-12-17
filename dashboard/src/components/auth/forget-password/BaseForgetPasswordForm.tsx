@@ -4,12 +4,14 @@ import { passwordResetRules } from "@/validation/password-reset";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import "./style.scss";
+import { useNavigate } from "react-router-dom";
 
 type PasswordResetDetails = {
   email: string;
 };
 
-const BaseSendPasswordResetEmailForm: FC<{}> = () => {
+const BaseForgetPasswordForm: FC<{}> = () => {
+  const navigate = useNavigate();
   const dispatch = useRootDispatch();
 
   const [submittable, setSubmittable] = useState(false);
@@ -24,13 +26,18 @@ const BaseSendPasswordResetEmailForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const sendPasswordResetEmail = () => {
+  const sendPasswordResetEmail = async () => {
     try {
+      if (!submittable) {
+        return;
+      }
+
       const payload = {
         email: form.getFieldValue("email"),
       };
 
-      submittable && dispatch(SEND_PASSWORD_RESET_EMAIL(payload));
+      await dispatch(SEND_PASSWORD_RESET_EMAIL(payload));
+      navigate("/auth/reset-password/sent-password-reset");
     } catch (error) {
       console.error(error);
     }
@@ -69,4 +76,4 @@ const BaseSendPasswordResetEmailForm: FC<{}> = () => {
   );
 };
 
-export default BaseSendPasswordResetEmailForm;
+export default BaseForgetPasswordForm;

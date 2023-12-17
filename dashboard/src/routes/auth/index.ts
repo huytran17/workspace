@@ -1,12 +1,12 @@
 import { ComponentType, lazy } from "react";
 const RegistrationPage = lazy(() => import("../../pages/auth/registration"));
 const LoginPage = lazy(() => import("../../pages/auth/login"));
-const SendPasswordResetEmailPage = lazy(
+const ForgetPasswordPage = lazy(
   () => import("../../pages/auth/forget-password")
 );
 const ResetPasswordPage = lazy(() => import("../../pages/auth/reset-password"));
 const SentPasswordResetEmailPage = lazy(
-  () => import("../../pages/auth/forget-password/sent-password-reset")
+  () => import("../../pages/auth/reset-password/sent-password-reset")
 );
 
 interface IRoute {
@@ -25,7 +25,7 @@ const authRouter: IRoute[] = [
   },
   {
     path: "/auth/forget-password",
-    component: SendPasswordResetEmailPage,
+    component: ForgetPasswordPage,
   },
   {
     path: "/auth/reset-password",

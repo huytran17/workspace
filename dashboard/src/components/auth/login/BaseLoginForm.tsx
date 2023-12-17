@@ -5,6 +5,7 @@ import { loginRules } from "@/validation";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import "./style.scss";
+import { useNavigate } from "react-router-dom";
 
 type LoginDetails = {
   email: string;
@@ -12,6 +13,7 @@ type LoginDetails = {
 };
 
 const BaseLoginForm: FC<{}> = () => {
+  const navigate = useNavigate();
   const dispatch = useRootDispatch();
   const user = useRootSelector(authSelectors.selectUser);
 
@@ -26,9 +28,14 @@ const BaseLoginForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const login = () => {
+  const login = async () => {
     try {
-      submittable && dispatch(LOGIN(user));
+      if (!submittable) {
+        return;
+      }
+
+      await dispatch(LOGIN(user));
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

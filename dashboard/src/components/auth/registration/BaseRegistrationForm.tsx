@@ -5,6 +5,7 @@ import { registrationRules } from "@/validation";
 import { Button, Form, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import "./style.scss";
+import { useNavigate } from "react-router-dom";
 
 type RegistrationDetails = {
   email: string;
@@ -14,6 +15,7 @@ type RegistrationDetails = {
 };
 
 const BaseRegistrationForm: FC<{}> = () => {
+  const navigate = useNavigate();
   const dispatch = useRootDispatch();
   const user = useRootSelector(authSelectors.selectUser);
 
@@ -29,9 +31,14 @@ const BaseRegistrationForm: FC<{}> = () => {
     );
   }, [values]);
 
-  const register = () => {
+  const register = async () => {
     try {
-      submittable && dispatch(REGISTER(user));
+      if (!submittable) {
+        return;
+      }
+
+      await dispatch(REGISTER(user));
+      navigate("/auth/login");
     } catch (error) {
       console.error(error);
     }
