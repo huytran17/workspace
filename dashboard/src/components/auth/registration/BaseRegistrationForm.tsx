@@ -33,13 +33,22 @@ const BaseRegistrationForm: FC<{}> = () => {
     );
   }, [values]);
 
+  const getFormValue = (fieldName: string) => form.getFieldValue(fieldName);
+
   const register = async () => {
     try {
       if (!submittable) {
         return;
       }
 
-      await dispatch(REGISTER(user));
+      const payload = {
+        email: getFormValue("email"),
+        fullname: getFormValue("fullname"),
+        password: getFormValue("password"),
+        password_confirmation: getFormValue("password_confirmation"),
+      };
+
+      await dispatch(REGISTER(payload));
       navigate("/auth/login");
     } catch (error) {
       console.error(error);
@@ -61,16 +70,7 @@ const BaseRegistrationForm: FC<{}> = () => {
           name="email"
           rules={registrationRules.email}
         >
-          <Input
-            type="email"
-            name="email"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input type="email" name="email" size="large" />
         </Form.Item>
 
         <Form.Item<RegistrationDetails>
@@ -78,15 +78,7 @@ const BaseRegistrationForm: FC<{}> = () => {
           name="fullname"
           rules={registrationRules.fullname}
         >
-          <Input
-            name="fullname"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input name="fullname" size="large" />
         </Form.Item>
 
         <Form.Item<RegistrationDetails>
@@ -94,15 +86,7 @@ const BaseRegistrationForm: FC<{}> = () => {
           name="password"
           rules={registrationRules.password}
         >
-          <Input.Password
-            name="password"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input.Password name="password" size="large" />
         </Form.Item>
 
         <Form.Item<RegistrationDetails>
@@ -110,15 +94,7 @@ const BaseRegistrationForm: FC<{}> = () => {
           name="password_confirmation"
           rules={registrationRules.password_confirmation}
         >
-          <Input.Password
-            name="password_confirmation"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input.Password name="password_confirmation" size="large" />
         </Form.Item>
 
         <Form.Item>

@@ -37,10 +37,12 @@ const BaseResetPassword: FC<{}> = () => {
         return;
       }
 
+      const getFormValue = (fieldName: string) => form.getFieldValue(fieldName);
+
       const payload = {
         token: searchParams.get("token") || "",
-        password: form.getFieldValue("password"),
-        password_confirmation: form.getFieldValue("password_confirmation"),
+        password: getFormValue("password"),
+        password_confirmation: getFormValue("password_confirmation"),
       };
 
       await dispatch(RESET_PASSWORD(payload));

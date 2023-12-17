@@ -30,13 +30,20 @@ const BaseLoginForm: FC<{}> = () => {
     );
   }, [values]);
 
+  const getFormValue = (fieldName: string) => form.getFieldValue(fieldName);
+
   const login = async () => {
     try {
       if (!submittable) {
         return;
       }
 
-      await dispatch(LOGIN(user));
+      const payload = {
+        email: getFormValue("email"),
+        password: getFormValue("password"),
+      };
+
+      await dispatch(LOGIN(payload));
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -58,16 +65,7 @@ const BaseLoginForm: FC<{}> = () => {
           name="email"
           rules={loginRules.email}
         >
-          <Input
-            type="email"
-            name="email"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input type="email" name="email" size="large" />
         </Form.Item>
 
         <Form.Item<LoginDetails>
@@ -75,15 +73,7 @@ const BaseLoginForm: FC<{}> = () => {
           name="password"
           rules={loginRules.password}
         >
-          <Input.Password
-            name="password"
-            size="large"
-            onChange={(e) =>
-              dispatch(
-                UPDATE_USER_DATA({ path: e.target.name, data: e.target.value })
-              )
-            }
-          />
+          <Input.Password name="password" size="large" />
         </Form.Item>
 
         <Form.Item>
