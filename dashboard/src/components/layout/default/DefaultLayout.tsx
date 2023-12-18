@@ -5,7 +5,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+import { Content, Header } from "antd/es/layout/layout";
 import { FC, createElement } from "react";
 import "./style.scss";
 
@@ -50,9 +50,6 @@ const DefaultLayout: FC<{ children: any }> = ({ children }) => {
             {children}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2023 Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );
