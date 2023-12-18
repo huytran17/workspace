@@ -1,4 +1,5 @@
 @import "@/styles/variables/z-index";
+@import "@/styles/color-mapping";
 
 .ant-layout-sider {
   position: fixed !important;
@@ -13,4 +14,9 @@
   top: 0;
   left: 0;
   z-index: $max-z-index - 1;
+  background-color: var(--color-background);
+}
+
+.ant-layout-content {
+  background-color: var(--color-background);
 }

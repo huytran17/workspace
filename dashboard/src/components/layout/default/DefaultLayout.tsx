@@ -3,7 +3,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content, Header } from "antd/es/layout/layout";
 import { FC, createElement } from "react";
@@ -21,10 +21,6 @@ const items = [
 }));
 
 const DefaultLayout: FC<{ children: any }> = ({ children }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   return (
     <Layout>
       <Sider breakpoint="lg" collapsedWidth="0">
@@ -37,19 +33,8 @@ const DefaultLayout: FC<{ children: any }> = ({ children }) => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: "24px 16px 0" }}>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {children}
-          </div>
-        </Content>
+        <Header />
+        <Content>{children}</Content>
       </Layout>
     </Layout>
   );
