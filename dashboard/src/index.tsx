@@ -7,6 +7,7 @@ import initialAxios from "./config/axios";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import "./styles/index.scss";
+import DefaultLayout from "./components/layout/default/DefaultLayout";
 
 initialAxios(store.dispatch);
 
@@ -16,7 +17,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <DefaultLayout>
+        <App />
+      </DefaultLayout>
     </Provider>
   </React.StrictMode>
 );
