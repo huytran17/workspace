@@ -1,7 +1,16 @@
+@import "@/styles/variables/z-index";
+
 .ant-layout-sider {
   position: fixed !important;
   top: 0;
   left: 0;
   height: 100%;
-  z-index: 9999;
+  z-index: $max-z-index;
+}
+
+.ant-layout-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: $max-z-index;
 }
