@@ -11,7 +11,7 @@ const notificationSchema = new Schema<INotification, Model<INotification>>(
   {
     type: { type: String, required: true, trim: true, enum: NotificationType },
     status: { type: String, required: true, trim: true, enum: Status },
-    task: { type: Schema.Types.ObjectId, required: true },
+    task: { type: Schema.Types.ObjectId, ref: "Task", required: true },
     content: { type: String, required: true, trim: true },
     deleted_at: { type: Date, default: null },
   },

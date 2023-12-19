@@ -7,8 +7,12 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema<IComment, Model<IComment>>(
   {
     content: { type: String, required: true, trim: true },
-    task: { type: Schema.Types.ObjectId, required: true, trim: true },
-    created_by: { type: Schema.Types.ObjectId, required: true, trim: true },
+    task: {
+      type: Schema.Types.ObjectId,
+      ref: "Task",
+      required: true,
+    },
+    created_by: { type: Schema.Types.ObjectId, ref: "User", required: true },
     deleted_at: { type: Date, default: null },
   },
   {
