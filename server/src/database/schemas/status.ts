@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import IStatus from "../interfaces/status";
 
 const Schema = mongoose.Schema;
 
-const statusSchema = new Schema<IStatus>(
+const statusSchema = new Schema<IStatus, Model<IStatus>>(
   {
     title: { type: String, required: true, trim: true },
     color: { type: String, required: true, trim: true },

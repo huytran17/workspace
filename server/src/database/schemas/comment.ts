@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import IComment from "../interfaces/comment";
 
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema<IComment>(
+const commentSchema = new Schema<IComment, Model<IComment>>(
   {
     content: { type: String, required: true, trim: true },
     task: { type: Schema.Types.ObjectId, required: true, trim: true },

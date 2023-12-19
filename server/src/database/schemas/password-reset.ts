@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import IPasswordReset from "../interfaces/password-reset";
 
 const Schema = mongoose.Schema;
 
-const passwordResetSchema = new Schema(
+const passwordResetSchema = new Schema<IPasswordReset, Model<IPasswordReset>>(
   {
     email: { type: String, required: true },
     code: { type: Number, required: true },

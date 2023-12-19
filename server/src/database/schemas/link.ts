@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ILink from "../interfaces/link";
 
 const Schema = mongoose.Schema;
 
-const linkSchema = new Schema<ILink>(
+const linkSchema = new Schema<ILink, Model<ILink>>(
   {
     title: { type: String, required: true, trim: true },
     uri: { type: String, required: true, trim: true },

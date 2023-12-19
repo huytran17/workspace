@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import INotification, {
   NotificationType,
@@ -7,7 +7,7 @@ import INotification, {
 
 const Schema = mongoose.Schema;
 
-const notificationSchema = new Schema<INotification>(
+const notificationSchema = new Schema<INotification, Model<INotification>>(
   {
     type: { type: String, required: true, trim: true, enum: NotificationType },
     status: { type: String, required: true, trim: true, enum: Status },

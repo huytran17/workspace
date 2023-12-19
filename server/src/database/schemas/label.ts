@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ILabel from "../interfaces/label";
 
 const Schema = mongoose.Schema;
 
-const labelSchema = new Schema<ILabel>(
+const labelSchema = new Schema<ILabel, Model<ILabel>>(
   {
     title: { type: String, required: true, trim: true },
     color: { type: String, required: true, trim: true },

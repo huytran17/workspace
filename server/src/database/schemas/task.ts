@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ITask from "../interfaces/task";
 
 const Schema = mongoose.Schema;
 
-const taskSchema = new Schema<ITask>(
+const taskSchema = new Schema<ITask, Model<ITask>>(
   {
     title: { type: String, required: true, trim: true },
     content: { type: String, trim: true, default: "" },
