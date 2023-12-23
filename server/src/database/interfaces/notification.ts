@@ -1,26 +1,26 @@
-import ITask from "./task";
+import IOrder from "./order";
 
 export default interface INotification {
   _id: string;
   type: NotificationType;
-  status: Status;
-  task: ITask;
-  content: string;
+  status: StatusType;
+  order: IOrder;
   created_at: Date;
   updated_at: Date;
   deleted_at: Date;
 }
 
 export enum NotificationType {
-  NEW_TASK_ASSIGNED = "new-task-assigned",
-  REMOVED_FROM_TASK = "removed-from-task",
-  UPDATED_CONTENT = "content-updated",
-  IS_BEING_EXPIRED = "is-being-expired",
-  NEW_COMMENT = "new-comment",
-  STATUS_CHANGED = "status-changed",
+  NEW_ORDER = "NEW_ORDER",
+  UPDATED_ORDER = "UPDATED_ORDER",
+  CANCELED_ORDER = "CANCELED_ORDER",
+  CENSORING_ORDER = "CENSORING_ORDER",
+  CENSORED_ORDER = "CENSORED_ORDER",
+  SHIPPING_ORDER = "SHIPPING_ORDER",
+  DELIVERED_ORDER = "DELIVERED_ORDER",
 }
 
-export enum Status {
-  READ = "read",
-  UNREAD = "unread",
+export enum StatusType {
+  READ = "READ",
+  UNREAD = "UNREAD",
 }

@@ -2,7 +2,7 @@ import mongoose, { Model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import INotification, {
   NotificationType,
-  Status,
+  StatusType,
 } from "../interfaces/notification";
 
 const Schema = mongoose.Schema;
@@ -10,9 +10,8 @@ const Schema = mongoose.Schema;
 const notificationSchema = new Schema<INotification, Model<INotification>>(
   {
     type: { type: String, required: true, trim: true, enum: NotificationType },
-    status: { type: String, required: true, trim: true, enum: Status },
-    task: { type: Schema.Types.ObjectId, ref: "Task", required: true },
-    content: { type: String, required: true, trim: true },
+    status: { type: String, required: true, trim: true, enum: StatusType },
+    order: { type: Schema.Types.ObjectId, ref: "Order", required: true },
     deleted_at: { type: Date, default: null },
   },
   {

@@ -1,15 +1,14 @@
 import INotification, {
   NotificationType,
-  Status,
+  StatusType,
 } from "../interfaces/notification";
-import ITask from "../interfaces/task";
+import IOrder from "../interfaces/order";
 
 export default class Notification implements INotification {
   public readonly _id: string;
   public readonly type: NotificationType;
-  public readonly status: Status;
-  public readonly task: ITask;
-  public readonly content: string;
+  public readonly order: IOrder;
+  public readonly status: StatusType;
   public readonly created_at: Date;
   public readonly updated_at: Date;
   public readonly deleted_at: Date;
@@ -17,27 +16,24 @@ export default class Notification implements INotification {
   constructor({
     _id,
     type,
+    order,
     status,
-    task,
-    content,
     created_at,
     updated_at,
     deleted_at,
   }: {
     _id: string;
     type: NotificationType;
-    status: Status;
-    task: ITask;
-    content: string;
+    order: IOrder;
+    status: StatusType;
     created_at: Date;
     updated_at: Date;
     deleted_at: Date;
   }) {
     this._id = _id;
     this.type = type;
+    this.order = order;
     this.status = status;
-    this.task = task;
-    this.content = content;
     this.created_at = created_at;
     this.updated_at = updated_at;
     this.deleted_at = deleted_at;
