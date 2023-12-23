@@ -1,11 +1,18 @@
 import IComment from "../interfaces/comment";
-import ITask from "../interfaces/task";
+import ICommentPhoto from "../interfaces/comment-photo";
+import IProduct from "../interfaces/product";
+import IRating from "../interfaces/rating";
 import IUser from "../interfaces/user";
 
 export default class Comment implements IComment {
   public readonly _id: string;
   public readonly content: string;
-  public readonly task: ITask;
+  public readonly product: IProduct;
+  public readonly rating: IRating;
+  public readonly is_published: boolean;
+  public readonly photos: ICommentPhoto[];
+  public readonly likes: IUser[];
+  public readonly dislikes: IUser[];
   public readonly created_by: IUser;
   public readonly created_at: Date;
   public readonly updated_at: Date;
@@ -14,7 +21,12 @@ export default class Comment implements IComment {
   constructor({
     _id,
     content,
-    task,
+    product,
+    rating,
+    is_published,
+    photos,
+    likes,
+    dislikes,
     created_by,
     created_at,
     updated_at,
@@ -22,7 +34,12 @@ export default class Comment implements IComment {
   }: {
     _id: string;
     content: string;
-    task: ITask;
+    product: IProduct;
+    rating: IRating;
+    is_published: boolean;
+    photos: ICommentPhoto[];
+    likes: IUser[];
+    dislikes: IUser[];
     created_by: IUser;
     created_at: Date;
     updated_at: Date;
@@ -30,7 +47,12 @@ export default class Comment implements IComment {
   }) {
     this._id = _id;
     this.content = content;
-    this.task = task;
+    this.product = product;
+    this.rating = rating;
+    this.is_published = is_published;
+    this.photos = photos;
+    this.likes = likes;
+    this.dislikes = dislikes;
     this.created_by = created_by;
     this.created_at = created_at;
     this.updated_at = updated_at;
