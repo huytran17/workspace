@@ -9,6 +9,12 @@ const productSchema = new Schema<IProduct, Model<IProduct>>(
     name: { type: String, required: true, trim: true },
     description: { type: String, trim: true, default: "" },
     price: { type: Number, default: 0 },
+    classify: [
+      {
+        type: { type: String, trim: true },
+        price: { type: Number, default: 0 },
+      },
+    ],
     sale_percent: { type: Number, default: 0 },
     sold: { type: Number, default: 0 },
     inventory: { type: Number, default: 0 },

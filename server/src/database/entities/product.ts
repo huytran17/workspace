@@ -8,6 +8,10 @@ export default class Product implements IProduct {
   public readonly name: string;
   public readonly description?: string;
   public readonly price?: number;
+  public readonly classify?: {
+    type: string;
+    price: number;
+  }[];
   public readonly sale_percent?: number;
   public readonly sold?: number;
   public readonly inventory?: number;
@@ -23,6 +27,7 @@ export default class Product implements IProduct {
     name,
     description,
     price,
+    classify,
     sale_percent,
     sold,
     inventory,
@@ -37,6 +42,7 @@ export default class Product implements IProduct {
     this.name = name;
     this.description = description;
     this.price = price;
+    this.classify = classify;
     this.sale_percent = sale_percent;
     this.sold = sold;
     this.inventory = inventory;

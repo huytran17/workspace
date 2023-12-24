@@ -7,6 +7,10 @@ export default interface IProduct {
   name: string;
   description?: string;
   price?: number;
+  classify?: {
+    type: string;
+    price: number;
+  }[];
   sale_percent?: number;
   sold?: number;
   inventory?: number;
