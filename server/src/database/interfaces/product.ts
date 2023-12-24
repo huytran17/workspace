@@ -1,5 +1,6 @@
 import ILabel from "./label";
 import IProductPhoto from "./product-photo";
+import IUser from "./user";
 
 export default interface IProduct {
   _id: string;
@@ -11,6 +12,7 @@ export default interface IProduct {
   inventory?: number;
   labels?: ILabel[];
   photos?: IProductPhoto[];
+  likes: IUser[];
   created_at: Date;
   updated_at: Date;
   deleted_at: Date;

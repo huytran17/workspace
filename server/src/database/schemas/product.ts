@@ -14,6 +14,7 @@ const productSchema = new Schema<IProduct, Model<IProduct>>(
     inventory: { type: Number, default: 0 },
     labels: [{ type: Schema.Types.ObjectId, ref: "Label", default: [] }],
     photos: [{ type: Schema.Types.ObjectId, ref: "ProductPhoto", default: [] }],
+    likes: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
     deleted_at: { type: Date, default: null },
   },
   {
