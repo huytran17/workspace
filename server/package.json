@@ -63,6 +63,7 @@
     "@types/nodemailer": "^6.4.14",
     "@types/passport": "^1.0.12",
     "@types/passport-jwt": "^3.0.9",
+    "@types/request-ip": "^0.0.41",
     "@types/validatorjs": "^3.15.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",

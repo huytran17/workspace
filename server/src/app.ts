@@ -12,12 +12,14 @@ import Redis from "./config/redis";
 import makeDbConnection from "./data-access/make-db";
 import { app_router } from "./routes";
 import cookieParser from "cookie-parser";
+import requestIp from "request-ip";
 
 const app = express();
 
 app.use(cors);
 app.use(helmet());
 app.use(cookieParser());
+app.use(requestIp.mw());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(upload.single("files"));
