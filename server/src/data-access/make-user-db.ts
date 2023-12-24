@@ -2,7 +2,7 @@ import User from "@/database/entities/user";
 import IUser from "@/database/interfaces/user";
 import { map } from "lodash";
 import mongoose from "mongoose";
-import IUserDb from "./interfaces/user-db";
+import IUserDb, { PayloadOmitProps } from "./interfaces/user-db";
 
 export default function makeUserDb({
   userDbModel,
@@ -75,9 +75,7 @@ export default function makeUserDb({
       }
     }
 
-    async insert(
-      payload: Omit<IUser, "_id" | "created_at" | "updated_at" | "deleted_at">
-    ): Promise<IUser> {
+    async insert(payload: Omit<IUser, PayloadOmitProps>): Promise<IUser> {
       try {
         const user = await userDbModel.create(payload);
         if (user) {
@@ -108,8 +106,13 @@ export default function makeUserDb({
 
     async delete({ _id }: { _id: string }): Promise<IUser> {
       try {
+        const payload = {
+          _id,
+          deleted_at: new Date(),
+        };
+
         const user = await userDbModel
-          .findByIdAndDelete({ _id })
+          .findByIdAndDelete(payload)
           .lean({ virtual: true });
 
         if (user) {
@@ -125,7 +128,7 @@ export default function makeUserDb({
     async hardDelete({ _id }: { _id: string }): Promise<IUser> {
       try {
         const user = await userDbModel
-          .findOneAndUpdate({ _id })
+          .findOneAndDelete({ _id })
           .lean({ virtual: true });
 
         if (user) {

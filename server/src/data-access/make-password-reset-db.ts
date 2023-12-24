@@ -1,6 +1,8 @@
 import IPasswordReset from "@/database/interfaces/password-reset";
 import mongoose from "mongoose";
-import IPasswordResetDb from "./interfaces/password-reset-db";
+import IPasswordResetDb, {
+  PayloadOmitProps,
+} from "./interfaces/password-reset-db";
 import PasswordReset from "@/database/entities/password-reset";
 
 export default function makePasswordResetDb({
@@ -61,7 +63,7 @@ export default function makePasswordResetDb({
     }
 
     async insert(
-      payload: Omit<IPasswordReset, "_id" | "created_at" | "updated_at">
+      payload: Omit<IPasswordReset, PayloadOmitProps>
     ): Promise<IPasswordReset> {
       const created = await passwordResetDbModel.create(payload);
 
@@ -86,7 +88,7 @@ export default function makePasswordResetDb({
 
     async hardDelete({ _id }: { _id: string }): Promise<IPasswordReset> {
       const deleted = await passwordResetDbModel
-        .findByIdAndDelete({ _id })
+        .findOneAndDelete({ _id })
         .lean({ virtual: true });
 
       if (deleted) {
