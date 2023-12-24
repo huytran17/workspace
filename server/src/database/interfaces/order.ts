@@ -9,6 +9,9 @@ export default interface IOrder {
   is_delivered_to_customer: boolean;
   is_customer_received: boolean;
   is_rated: boolean;
+  amount: number;
+  lading_code: string;
+  classify: string;
   status: OrderStatusType;
   canceled_at: Date;
   created_at: Date;

@@ -10,6 +10,9 @@ export default class Order implements IOrder {
   public readonly is_delivered_to_customer: boolean;
   public readonly is_customer_received: boolean;
   public readonly is_rated: boolean;
+  public readonly amount: number;
+  public readonly lading_code: string;
+  public readonly classify: string;
   public readonly status: OrderStatusType;
   public readonly canceled_at: Date;
   public readonly created_at: Date;
@@ -24,6 +27,8 @@ export default class Order implements IOrder {
     is_delivered_to_customer,
     is_customer_received,
     is_rated,
+    amount,
+    lading_code,
     status,
     canceled_at,
     created_at,
@@ -38,6 +43,8 @@ export default class Order implements IOrder {
     this.is_customer_received = is_customer_received;
     this.is_rated = is_rated;
     this.status = status;
+    this.amount = amount;
+    this.lading_code = lading_code;
     this.canceled_at = canceled_at;
     this.created_at = created_at;
     this.updated_at = updated_at;
