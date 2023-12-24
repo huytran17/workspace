@@ -1,6 +1,6 @@
 import { createAccessToken } from "@/config/access-token";
 import { hashPassword, verifyPassword } from "@/config/bcrypt";
-import { createUser, getUserByEmail } from "@/use-cases/user/user";
+import { createUser, getUserByEmail } from "@/use-cases/user";
 import makeGetMeController from "./get-me";
 import makeLoginController from "./login";
 import makeLogoutController from "./logout";

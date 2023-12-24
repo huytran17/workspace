@@ -8,8 +8,8 @@ import {
   getPasswordResetByEmail,
   getPasswordResetByEmailAndCode,
   hardDeletePasswordReset,
-} from "@/use-cases/user/password-reset";
-import { getUserByEmail, updateUser } from "@/use-cases/user/user";
+} from "@/use-cases/password-reset";
+import { getUserByEmail, updateUser } from "@/use-cases/user";
 import makeResetPasswordController from "./reset-password";
 import makeSendPasswordResetEmailController from "./send-password-reset-email";
 

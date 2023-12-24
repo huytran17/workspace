@@ -1,5 +1,5 @@
 import makeGetUserByEmailController from "./get-user-by-email";
-import { getUserByEmail } from "@/use-cases/user/user";
+import { getUserByEmail } from "@/use-cases/user";
 
 const getUserByEmailController = makeGetUserByEmailController({
   getUserByEmail,

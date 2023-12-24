@@ -1,10 +1,10 @@
 import { VerifyAccessToken } from "@/config/access-token/verify-access-token";
 import { HashPassword } from "@/config/bcrypt/hash-password";
 import { http_status } from "@/config/constants/http-status";
-import { GetPasswordResetByEmailAndCode } from "@/use-cases/user/password-reset/get-password-reset-by-email-and-code";
-import { HardDeletePasswordReset } from "@/use-cases/user/password-reset/hard-delete-passwrod-reset";
-import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
-import { UpdateUser } from "@/use-cases/user/user/update-user";
+import { GetPasswordResetByEmailAndCode } from "@/use-cases/password-reset/get-password-reset-by-email-and-code";
+import { HardDeletePasswordReset } from "@/use-cases/password-reset/hard-delete-passwrod-reset";
+import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
+import { UpdateUser } from "@/use-cases/user/update-user";
 import { JwtPayload } from "jsonwebtoken";
 import { get, isNil } from "lodash";
 

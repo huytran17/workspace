@@ -5,11 +5,11 @@ import { RenderEmailContent } from "@/config/mailer/render-email-content";
 import { SendMail } from "@/config/mailer/send-email";
 import { GenerateRandomString } from "@/config/randomstring/make-generate-random-string";
 import IPasswordReset from "@/database/interfaces/password-reset";
-import { CreatePasswordReset } from "@/use-cases/user/password-reset/create-password-reset";
-import { GetPasswordResetByCode } from "@/use-cases/user/password-reset/get-password-reset-by-code";
-import { GetPasswordResetByEmail } from "@/use-cases/user/password-reset/get-password-reset-by-email";
-import { HardDeletePasswordReset } from "@/use-cases/user/password-reset/hard-delete-passwrod-reset";
-import { GetUserByEmail } from "@/use-cases/user/user/get-user-by-email";
+import { CreatePasswordReset } from "@/use-cases/password-reset/create-password-reset";
+import { GetPasswordResetByCode } from "@/use-cases/password-reset/get-password-reset-by-code";
+import { GetPasswordResetByEmail } from "@/use-cases/password-reset/get-password-reset-by-email";
+import { HardDeletePasswordReset } from "@/use-cases/password-reset/hard-delete-passwrod-reset";
+import { GetUserByEmail } from "@/use-cases/user/get-user-by-email";
 import { get, isNil } from "lodash";
 
 interface IPayload {
