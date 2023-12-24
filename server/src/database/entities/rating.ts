@@ -16,14 +16,7 @@ export default class Rating implements IRating {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    score: number;
-    created_by: IUser;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IRating) {
     this._id = _id;
     this.score = score;
     this.created_by = created_by;

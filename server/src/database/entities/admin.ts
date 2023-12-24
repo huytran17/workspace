@@ -25,19 +25,7 @@ export default class Admin implements IAdmin {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    fullname: string;
-    email: string;
-    phone: string;
-    address: IAdminAddress;
-    hash_password: string;
-    type: AdminType;
-    ip?: object;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IAdmin) {
     this._id = _id;
     this.fullname = fullname;
     this.email = email;

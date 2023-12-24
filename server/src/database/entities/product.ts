@@ -29,20 +29,7 @@ export default class Product implements IProduct {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    name: string;
-    description?: string;
-    price?: number;
-    sale_percent?: number;
-    sold?: number;
-    inventory?: number;
-    labels?: ILabel[];
-    photos?: IProductPhoto[];
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IProduct) {
     this._id = _id;
     this.name = name;
     this.description = description;

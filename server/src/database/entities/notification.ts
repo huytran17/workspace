@@ -21,15 +21,7 @@ export default class Notification implements INotification {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    type: NotificationType;
-    order: IOrder;
-    status: StatusType;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: INotification) {
     this._id = _id;
     this.type = type;
     this.order = order;

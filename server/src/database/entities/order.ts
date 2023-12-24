@@ -21,16 +21,7 @@ export default class Order implements IOrder {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    product: IProduct;
-    orderer: IUser;
-    cancel_reason: CancelReasonType[];
-    canceled_at: Date;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IOrder) {
     this._id = _id;
     this.product = product;
     this.orderer = orderer;

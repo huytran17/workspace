@@ -15,14 +15,7 @@ export default class Label implements ILabel {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    title: string;
-    color: string;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: ILabel) {
     this._id = _id;
     this.title = title;
     this.color = color;

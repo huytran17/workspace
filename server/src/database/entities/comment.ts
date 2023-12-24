@@ -31,20 +31,7 @@ export default class Comment implements IComment {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    content: string;
-    product: IProduct;
-    rating: IRating;
-    is_published: boolean;
-    photos: ICommentPhoto[];
-    likes: IUser[];
-    dislikes: IUser[];
-    created_by: IUser;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IComment) {
     this._id = _id;
     this.content = content;
     this.product = product;

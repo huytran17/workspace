@@ -15,14 +15,7 @@ export default class OrderStatus implements IOrderStatus {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    type: StatusType;
-    color: string;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IOrderStatus) {
     this._id = _id;
     this.type = type;
     this.color = color;

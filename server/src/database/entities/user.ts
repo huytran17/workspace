@@ -23,18 +23,7 @@ export default class User implements IUser {
     created_at,
     updated_at,
     deleted_at,
-  }: {
-    _id: string;
-    fullname: string;
-    email: string;
-    phone: string;
-    address: IUserAddress;
-    hash_password: string;
-    ip?: object;
-    created_at: Date;
-    updated_at: Date;
-    deleted_at: Date;
-  }) {
+  }: IUser) {
     this._id = _id;
     this.fullname = fullname;
     this.email = email;

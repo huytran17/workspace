@@ -6,15 +6,7 @@ export default class ProductPhoto implements IProductPhoto {
   public readonly photos: IPhoto[];
   public readonly created_at: Date;
 
-  constructor({
-    _id,
-    photos,
-    created_at,
-  }: {
-    _id: string;
-    photos: IPhoto[];
-    created_at: Date;
-  }) {
+  constructor({ _id, photos, created_at }: IProductPhoto) {
     this._id = _id;
     this.photos = photos;
     this.created_at = created_at;
