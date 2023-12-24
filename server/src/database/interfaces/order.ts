@@ -7,6 +7,9 @@ export default interface IOrder {
   orderer: IUser;
   cancel_reason: CancelReasonType[];
   canceled_at: Date;
+  is_delivered_to_customer: boolean;
+  is_customer_received: boolean;
+  status: OrderStatusType;
   created_at: Date;
   updated_at: Date;
   deleted_at: Date;
@@ -18,4 +21,11 @@ export enum CancelReasonType {
   CHANGE_PERSONAL_INFO = "CHANGE_PERSONAL_INFO",
   DONT_WANT_TO_BUY = "DONT_WANT_TO_BUY",
   OTHER = "OTHER",
+}
+
+export enum OrderStatusType {
+  CENSORING = "CENSORING",
+  CENSORED = "CENSORED",
+  SHIPPING = "SHIPPING",
+  DELIVERED = "DELIVERED",
 }
