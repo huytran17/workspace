@@ -5,7 +5,7 @@ import IUser from "../interfaces/user";
 export default class Order implements IOrder {
   public readonly _id: string;
   public readonly product: IProduct;
-  public readonly orderer: IUser;
+  public readonly customer: IUser;
   public readonly cancel_reason: CancelReasonType[];
   public readonly is_delivered_to_customer: boolean;
   public readonly is_customer_received: boolean;
@@ -18,7 +18,7 @@ export default class Order implements IOrder {
   constructor({
     _id,
     product,
-    orderer,
+    customer,
     cancel_reason,
     is_delivered_to_customer,
     is_customer_received,
@@ -30,7 +30,7 @@ export default class Order implements IOrder {
   }: IOrder) {
     this._id = _id;
     this.product = product;
-    this.orderer = orderer;
+    this.customer = customer;
     this.cancel_reason = cancel_reason;
     this.is_delivered_to_customer = is_delivered_to_customer;
     this.is_customer_received = is_customer_received;

@@ -4,12 +4,12 @@ import IUser from "./user";
 export default interface IOrder {
   _id: string;
   product: IProduct;
-  orderer: IUser;
+  customer: IUser;
   cancel_reason: CancelReasonType[];
-  canceled_at: Date;
   is_delivered_to_customer: boolean;
   is_customer_received: boolean;
   status: OrderStatusType;
+  canceled_at: Date;
   created_at: Date;
   updated_at: Date;
   deleted_at: Date;
