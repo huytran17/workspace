@@ -8,6 +8,7 @@ export default interface IOrder {
   cancel_reason: CancelReasonType[];
   is_delivered_to_customer: boolean;
   is_customer_received: boolean;
+  is_rated: boolean;
   status: OrderStatusType;
   canceled_at: Date;
   created_at: Date;

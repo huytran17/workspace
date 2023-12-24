@@ -11,6 +11,7 @@ const orderSchema = new Schema<IOrder, Model<IOrder>>(
     cancel_reason: [{ type: String, required: true, default: [] }],
     is_delivered_to_customer: { type: Boolean, default: false },
     is_customer_received: { type: Boolean, default: false },
+    is_rated: { type: Boolean, default: false },
     status: { type: String, required: true, enum: OrderStatusType },
     canceled_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null },
