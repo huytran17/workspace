@@ -1,5 +1,8 @@
 import IOrder from "@/database/interfaces/order";
-import IOrderDb, { PayloadOmitProps } from "./interfaces/order-db";
+import IOrderDb, {
+  IOrderPagination,
+  PayloadOmitProps,
+} from "./interfaces/order-db";
 import mongoose from "mongoose";
 import Order from "@/database/entities/order";
 
@@ -12,6 +15,56 @@ export default function makeOrderDb({
   >;
 }) {
   return new (class OrderDb implements IOrderDb {
+    async findByUserPaginated({
+      _id,
+      page,
+      entries_per_page,
+    }: {
+      _id: string;
+      page: number;
+      entries_per_page: number;
+    }): Promise<IOrderPagination> {
+      try {
+        const skip = page > 0 ? (page - 1) * entries_per_page : 0;
+
+        const query_conditions = {
+          customer: _id,
+          deleted_at: null,
+        };
+
+        const orders = await orderDbModel
+          .find(query_conditions)
+          .skip(skip)
+          .limit(entries_per_page)
+          .lean({ virtuals: true });
+
+        if (!orders) {
+          return null;
+        }
+
+        const total = await orderDbModel.countDocuments(query_conditions);
+
+        const has_more = page > 0 ? page * entries_per_page < total : false;
+        const from = page > 0 ? page : null;
+        const to = has_more ? page + 1 : null;
+
+        const data = orders.map((order) => new Order(order));
+
+        return {
+          pagination: {
+            from,
+            to,
+            page,
+            entries_per_page,
+            total,
+          },
+          data,
+        };
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     async insert(payload: Omit<IOrder, PayloadOmitProps>): Promise<IOrder> {
       try {
         const order = await orderDbModel.create(payload);
