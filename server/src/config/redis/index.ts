@@ -98,7 +98,7 @@ export default class Redis {
     }
   }
 
-  keyBuilder(payload: { [key: string]: string }): string {
+  keyBuilder(payload: { [key: string]: any }): string {
     if (!payload) {
       console.log("Redis client: Invalid data to build cache key.");
       return;
