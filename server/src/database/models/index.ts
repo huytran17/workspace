@@ -43,7 +43,7 @@ type IPhotoModel = IPhoto & mongoose.Document;
 type IProductPhotoModel = IProductPhoto & mongoose.Document;
 type ICommentPhotoModel = ICommentPhoto & mongoose.Document;
 type IOrderModel = IOrder & mongoose.Document;
-type IAdminNotificationmodel = IAdminNotification & mongoose.Document;
+type IAdminNotificationModel = IAdminNotification & mongoose.Document;
 
 const CommentModel = mongoose.model<ICommentModel>("comment", commentSchema);
 const LabelModel = mongoose.model<ILabelModel>("label", labelSchema);
@@ -70,7 +70,7 @@ const CommentPhotoModel = mongoose.model<ICommentPhotoModel>(
   commentPhotoSchema
 );
 const OrderModel = mongoose.model<IOrderModel>("order", orderSchema);
-const AdminNotificationmodel = mongoose.model<IAdminNotificationmodel>(
+const AdminNotificationmodel = mongoose.model<IAdminNotificationModel>(
   "adminNotification",
   adminNotificationSchema
 );
