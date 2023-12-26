@@ -15,6 +15,5 @@ export default interface IPasswordResetDb {
   insert: (
     payload: Omit<IPasswordReset, PayloadOmitProps>
   ) => Promise<IPasswordReset>;
-  update: (payload: IPasswordReset) => Promise<IPasswordReset>;
   hardDelete: ({ _id }: { _id: string }) => Promise<IPasswordReset>;
 }

@@ -4,7 +4,7 @@ import IOrder from "@/database/interfaces/order";
 export type UpdateOrder = ({
   orderDetails,
 }: {
-  orderDetails: IOrder;
+  orderDetails: Partial<IOrder>;
 }) => Promise<IOrder>;
 
 export default function makeUpdateOrder({

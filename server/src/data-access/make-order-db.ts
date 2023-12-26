@@ -79,7 +79,7 @@ export default function makeOrderDb({
       }
     }
 
-    async update(payload: IOrder): Promise<IOrder> {
+    async update(payload: Partial<IOrder>): Promise<IOrder> {
       try {
         const updated = await orderDbModel.findOneAndUpdate(payload);
 

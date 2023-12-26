@@ -74,18 +74,6 @@ export default function makePasswordResetDb({
       return null;
     }
 
-    async update(payload: IPasswordReset): Promise<IPasswordReset> {
-      const updated = await passwordResetDbModel
-        .findOneAndUpdate(payload)
-        .lean({ virtual: true });
-
-      if (updated) {
-        return new PasswordReset(updated);
-      }
-
-      return null;
-    }
-
     async hardDelete({ _id }: { _id: string }): Promise<IPasswordReset> {
       const deleted = await passwordResetDbModel
         .findOneAndDelete({ _id })

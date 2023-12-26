@@ -19,7 +19,7 @@ export default interface IOrderDb {
     entries_per_page: number;
   }) => Promise<IOrderPagination>;
   insert: (payload: Omit<IOrder, PayloadOmitProps>) => Promise<IOrder>;
-  update: (payload: IOrder) => Promise<IOrder>;
+  update: (payload: Partial<IOrder>) => Promise<IOrder>;
   delete: ({ _id }: { _id: string }) => Promise<IOrder>;
   hardDelete: ({ _id }: { _id: string }) => Promise<IOrder>;
 }
