@@ -136,7 +136,9 @@ export default function makeAdminDb({
 
     async update(payload: Partial<IAdmin>): Promise<IAdmin> {
       try {
-        const updated = await adminDbModel.findOneAndUpdate(payload);
+        const updated = await adminDbModel
+          .findOneAndUpdate(payload)
+          .lean({ virtuals: true });
 
         if (updated) {
           return new Admin(updated);
@@ -155,7 +157,9 @@ export default function makeAdminDb({
           deleted_at: new Date(),
         };
 
-        const deleted = await adminDbModel.findOneAndUpdate(payload);
+        const deleted = await adminDbModel
+          .findOneAndUpdate(payload)
+          .lean({ virtuals: true });
 
         if (deleted) {
           return new Admin(deleted);
@@ -169,7 +173,9 @@ export default function makeAdminDb({
 
     async hardDelete({ _id }: { _id: string }): Promise<IAdmin> {
       try {
-        const deleted = await adminDbModel.findOneAndDelete({ _id });
+        const deleted = await adminDbModel
+          .findOneAndDelete({ _id })
+          .lean({ virtuals: true });
 
         if (deleted) {
           return new Admin(deleted);

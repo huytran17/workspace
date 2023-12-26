@@ -88,7 +88,9 @@ export default function makeOrderDb({
           ...payload,
         };
 
-        const updated = await orderDbModel.findOneAndUpdate(query_conditions);
+        const updated = await orderDbModel
+          .findOneAndUpdate(query_conditions)
+          .lean({ virtuals: true });
 
         if (updated) {
           return new Order(updated);
@@ -107,7 +109,9 @@ export default function makeOrderDb({
           deleted_at: new Date(),
         };
 
-        const deleted = await orderDbModel.findOneAndUpdate(payload);
+        const deleted = await orderDbModel
+          .findOneAndUpdate(payload)
+          .lean({ virtuals: true });
 
         if (deleted) {
           return new Order(deleted);
@@ -121,7 +125,9 @@ export default function makeOrderDb({
 
     async hardDelete({ _id }: { _id: string }): Promise<IOrder> {
       try {
-        const deleted = await orderDbModel.findOneAndDelete({ _id });
+        const deleted = await orderDbModel
+          .findOneAndDelete({ _id })
+          .lean({ virtuals: true });
 
         if (deleted) {
           return new Order(deleted);
