@@ -1,10 +1,10 @@
+import Order from "@/database/entities/order";
 import IOrder from "@/database/interfaces/order";
+import mongoose from "mongoose";
 import IOrderDb, {
   IOrderPagination,
   OrderPayloadOmitProps,
 } from "./interfaces/order-db";
-import mongoose from "mongoose";
-import Order from "@/database/entities/order";
 
 export default function makeOrderDb({
   orderDbModel,
@@ -32,13 +32,13 @@ export default function makeOrderDb({
           deleted_at: null,
         };
 
-        const orders = await orderDbModel
+        const exists = await orderDbModel
           .find(query_conditions)
           .skip(skip)
           .limit(entries_per_page)
           .lean({ virtuals: true });
 
-        if (!orders) {
+        if (!exists) {
           return null;
         }
 
@@ -48,7 +48,7 @@ export default function makeOrderDb({
         const from = page > 0 ? page : null;
         const to = has_more ? page + 1 : null;
 
-        const data = orders.map((order) => new Order(order));
+        const data = exists.map((exists) => new Order(exists));
 
         return {
           pagination: {
@@ -69,10 +69,10 @@ export default function makeOrderDb({
       payload: Omit<IOrder, OrderPayloadOmitProps>
     ): Promise<IOrder> {
       try {
-        const order = await orderDbModel.create(payload);
+        const exists = await orderDbModel.create(payload);
 
-        if (order) {
-          return new Order(order);
+        if (exists) {
+          return new Order(exists);
         }
 
         return null;
@@ -83,7 +83,12 @@ export default function makeOrderDb({
 
     async update(payload: Partial<IOrder>): Promise<IOrder> {
       try {
-        const updated = await orderDbModel.findOneAndUpdate(payload);
+        const query_conditions = {
+          deleted_at: null,
+          ...payload,
+        };
+
+        const updated = await orderDbModel.findOneAndUpdate(query_conditions);
 
         if (updated) {
           return new Order(updated);

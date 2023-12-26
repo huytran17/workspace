@@ -43,13 +43,13 @@ export default function makeAdminDb({
           ];
         }
 
-        const admins = await adminDbModel
+        const exists = await adminDbModel
           .find(query_conditions)
           .skip(skip)
           .limit(entries_per_page)
           .lean({ virtuals: true });
 
-        if (!admins) {
+        if (!exists) {
           return null;
         }
 
@@ -59,7 +59,7 @@ export default function makeAdminDb({
         const from = page > 0 ? page : null;
         const to = has_more ? page + 1 : null;
 
-        const data = admins.map((order) => new Admin(order));
+        const data = exists.map((order) => new Admin(order));
 
         return {
           pagination: {
@@ -83,12 +83,12 @@ export default function makeAdminDb({
           deleted_at: null,
         };
 
-        const admin = await adminDbModel
+        const exists = await adminDbModel
           .findOne(query_conditions)
           .lean({ virtuals: true });
 
-        if (admin) {
-          return new Admin(admin);
+        if (exists) {
+          return new Admin(exists);
         }
 
         return null;
@@ -104,12 +104,12 @@ export default function makeAdminDb({
           deleted_at: null,
         };
 
-        const admin = await adminDbModel
+        const exists = await adminDbModel
           .findOne(query_conditions)
           .lean({ virtuals: true });
 
-        if (admin) {
-          return new Admin(admin);
+        if (exists) {
+          return new Admin(exists);
         }
 
         return null;
@@ -122,10 +122,10 @@ export default function makeAdminDb({
       payload: Omit<IAdmin, AdminPayloadOmitProps>
     ): Promise<IAdmin> {
       try {
-        const admin = await adminDbModel.create(payload);
+        const created = await adminDbModel.create(payload);
 
-        if (admin) {
-          return new Admin(admin);
+        if (created) {
+          return new Admin(created);
         }
 
         return null;
@@ -155,10 +155,10 @@ export default function makeAdminDb({
           deleted_at: new Date(),
         };
 
-        const admin = await adminDbModel.findOneAndUpdate(payload);
+        const deleted = await adminDbModel.findOneAndUpdate(payload);
 
-        if (admin) {
-          return new Admin(admin);
+        if (deleted) {
+          return new Admin(deleted);
         }
 
         return null;

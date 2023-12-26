@@ -24,7 +24,7 @@ export default function makeUserDb({
           .lean({ virtual: true });
 
         if (users.length) {
-          return map(users, (user) => new User(user));
+          return map(users, (exists) => new User(exists));
         }
 
         return null;
@@ -40,12 +40,12 @@ export default function makeUserDb({
           deleted_at: null,
         };
 
-        const user = await userDbModel
+        const exists = await userDbModel
           .findOne(queryConditions)
           .lean({ virtual: true });
 
-        if (user) {
-          return new User(user);
+        if (exists) {
+          return new User(exists);
         }
 
         return null;
@@ -61,12 +61,12 @@ export default function makeUserDb({
           deleted_at: null,
         };
 
-        const user = await userDbModel
+        const exists = await userDbModel
           .findOne(queryConditions)
           .lean({ virtual: true });
 
-        if (user) {
-          return new User(user);
+        if (exists) {
+          return new User(exists);
         }
 
         return null;
@@ -77,9 +77,9 @@ export default function makeUserDb({
 
     async insert(payload: Omit<IUser, UserPayloadOmitProps>): Promise<IUser> {
       try {
-        const user = await userDbModel.create(payload);
-        if (user) {
-          return new User(user);
+        const exists = await userDbModel.create(payload);
+        if (exists) {
+          return new User(exists);
         }
 
         return null;
@@ -90,12 +90,17 @@ export default function makeUserDb({
 
     async update(payload: Partial<IUser>): Promise<IUser> {
       try {
-        const user = await userDbModel
-          .findOneAndUpdate(payload)
+        const query_conditions = {
+          deleted_at: null,
+          ...payload,
+        };
+
+        const updated = await userDbModel
+          .findOneAndUpdate(query_conditions)
           .lean({ virtual: true });
 
-        if (user) {
-          return new User(user);
+        if (updated) {
+          return new User(updated);
         }
 
         return null;
@@ -111,12 +116,12 @@ export default function makeUserDb({
           deleted_at: new Date(),
         };
 
-        const user = await userDbModel
+        const deleted = await userDbModel
           .findByIdAndDelete(payload)
           .lean({ virtual: true });
 
-        if (user) {
-          return new User(user);
+        if (deleted) {
+          return new User(deleted);
         }
 
         return null;
@@ -127,12 +132,12 @@ export default function makeUserDb({
 
     async hardDelete({ _id }: { _id: string }): Promise<IUser> {
       try {
-        const user = await userDbModel
+        const deleted = await userDbModel
           .findOneAndDelete({ _id })
           .lean({ virtual: true });
 
-        if (user) {
-          return new User(user);
+        if (deleted) {
+          return new User(deleted);
         }
 
         return null;
