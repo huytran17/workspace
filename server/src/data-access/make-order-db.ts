@@ -1,7 +1,7 @@
 import IOrder from "@/database/interfaces/order";
 import IOrderDb, {
   IOrderPagination,
-  PayloadOmitProps,
+  OrderPayloadOmitProps,
 } from "./interfaces/order-db";
 import mongoose from "mongoose";
 import Order from "@/database/entities/order";
@@ -65,7 +65,9 @@ export default function makeOrderDb({
       }
     }
 
-    async insert(payload: Omit<IOrder, PayloadOmitProps>): Promise<IOrder> {
+    async insert(
+      payload: Omit<IOrder, OrderPayloadOmitProps>
+    ): Promise<IOrder> {
       try {
         const order = await orderDbModel.create(payload);
 

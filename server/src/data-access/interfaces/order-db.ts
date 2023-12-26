@@ -1,6 +1,6 @@
 import IOrder from "@/database/interfaces/order";
 
-export type PayloadOmitProps =
+export type OrderPayloadOmitProps =
   | "_id"
   | "created_at"
   | "updated_at"
@@ -18,7 +18,7 @@ export default interface IOrderDb {
     page: number;
     entries_per_page: number;
   }) => Promise<IOrderPagination>;
-  insert: (payload: Omit<IOrder, PayloadOmitProps>) => Promise<IOrder>;
+  insert: (payload: Omit<IOrder, OrderPayloadOmitProps>) => Promise<IOrder>;
   update: (payload: Partial<IOrder>) => Promise<IOrder>;
   delete: ({ _id }: { _id: string }) => Promise<IOrder>;
   hardDelete: ({ _id }: { _id: string }) => Promise<IOrder>;

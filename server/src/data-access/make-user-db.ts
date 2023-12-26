@@ -2,7 +2,7 @@ import User from "@/database/entities/user";
 import IUser from "@/database/interfaces/user";
 import { map } from "lodash";
 import mongoose from "mongoose";
-import IUserDb, { PayloadOmitProps } from "./interfaces/user-db";
+import IUserDb, { UserPayloadOmitProps } from "./interfaces/user-db";
 
 export default function makeUserDb({
   userDbModel,
@@ -75,7 +75,7 @@ export default function makeUserDb({
       }
     }
 
-    async insert(payload: Omit<IUser, PayloadOmitProps>): Promise<IUser> {
+    async insert(payload: Omit<IUser, UserPayloadOmitProps>): Promise<IUser> {
       try {
         const user = await userDbModel.create(payload);
         if (user) {

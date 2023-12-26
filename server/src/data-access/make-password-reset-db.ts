@@ -1,7 +1,7 @@
 import IPasswordReset from "@/database/interfaces/password-reset";
 import mongoose from "mongoose";
 import IPasswordResetDb, {
-  PayloadOmitProps,
+  PasswordResetPayloadOmitProps,
 } from "./interfaces/password-reset-db";
 import PasswordReset from "@/database/entities/password-reset";
 
@@ -63,7 +63,7 @@ export default function makePasswordResetDb({
     }
 
     async insert(
-      payload: Omit<IPasswordReset, PayloadOmitProps>
+      payload: Omit<IPasswordReset, PasswordResetPayloadOmitProps>
     ): Promise<IPasswordReset> {
       const created = await passwordResetDbModel.create(payload);
 
