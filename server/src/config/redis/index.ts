@@ -115,6 +115,10 @@ export default class Redis {
 
     let result = "";
     for (const key in payload) {
+      if (!payload[key]) {
+        continue;
+      }
+
       result += `${key}=${payload[key]}`;
     }
 
