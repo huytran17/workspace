@@ -6,16 +6,7 @@ export type PayloadOmitProps =
   | "updated_at"
   | "deleted_at";
 
-export interface IOrderPagination {
-  pagination: {
-    from: number;
-    to: number;
-    page: number;
-    entries_per_page: number;
-    total: number;
-  };
-  data: IOrder[];
-}
+export interface IOrderPagination extends IPagination<IOrder> {}
 
 export default interface IOrderDb {
   findByUserPaginated: ({
