@@ -1,9 +1,9 @@
+import AdminNotification from "@/database/entities/admin-notification";
 import IAdminNotification from "@/database/interfaces/admin-notification";
 import mongoose from "mongoose";
 import IAdminNotificationDb, {
   AdminNotificationPayloadOmitProps,
 } from "./interfaces/admin-notification-db";
-import AdminNotification from "@/database/entities/admin-notification";
 
 export default function makeAdminNotificationDb({
   adminNotificationDbModel,
