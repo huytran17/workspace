@@ -1,10 +1,10 @@
 import IPasswordResetDb, {
-  PayloadOmitProps,
+  PasswordResetPayloadOmitProps,
 } from "@/data-access/interfaces/password-reset-db";
 import IPasswordReset from "@/database/interfaces/password-reset";
 
 interface IPayload {
-  passwordResetDetails: Omit<IPasswordReset, PayloadOmitProps>;
+  passwordResetDetails: Omit<IPasswordReset, PasswordResetPayloadOmitProps>;
 }
 
 export type CreatePasswordReset = ({

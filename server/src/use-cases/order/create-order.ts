@@ -1,10 +1,12 @@
-import IOrderDb, { PayloadOmitProps } from "@/data-access/interfaces/order-db";
+import IOrderDb, {
+  OrderPayloadOmitProps,
+} from "@/data-access/interfaces/order-db";
 import IOrder from "@/database/interfaces/order";
 
 export type CreateOrder = ({
   orderDetails,
 }: {
-  orderDetails: Omit<IOrder, PayloadOmitProps>;
+  orderDetails: Omit<IOrder, OrderPayloadOmitProps>;
 }) => Promise<IOrder>;
 
 export default function makeCreateOrder({
