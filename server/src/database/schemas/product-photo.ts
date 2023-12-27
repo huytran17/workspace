@@ -11,6 +11,7 @@ const productPhotoSchema = new Schema<IProductPhoto, Model<IProductPhoto>>(
     toJSON: { virtuals: true },
     timestamps: {
       createdAt: "created_at",
+      updatedAt: "updated_at",
     },
   }
 );
