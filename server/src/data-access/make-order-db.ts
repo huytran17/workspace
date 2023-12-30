@@ -16,11 +16,11 @@ export default function makeOrderDb({
 }) {
   return new (class OrderDb implements IOrderDb {
     async findByUserPaginated({
-      _id,
+      user_id,
       page,
       entries_per_page,
     }: {
-      _id: string;
+      user_id: string;
       page: number;
       entries_per_page: number;
     }): Promise<IOrderPagination> {
@@ -28,7 +28,7 @@ export default function makeOrderDb({
         const skip = page > 0 ? (page - 1) * entries_per_page : 0;
 
         const query_conditions = {
-          customer: _id,
+          customer: user_id,
           deleted_at: null,
         };
 

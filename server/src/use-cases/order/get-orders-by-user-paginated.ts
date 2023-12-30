@@ -2,13 +2,13 @@ import IOrderDb, { IOrderPagination } from "@/data-access/interfaces/order-db";
 import { redis } from "@/config/redis";
 
 interface IPayload {
-  _id: string;
+  user_id: string;
   page: number;
   entries_per_page: number;
 }
 
 export type GetOrdersByUserPaginated = ({
-  _id,
+  user_id,
   page,
   entries_per_page,
 }: IPayload) => Promise<IOrderPagination>;
@@ -19,13 +19,13 @@ export default function makeGetOrdersByUserPaginated({
   orderDb: IOrderDb;
 }): GetOrdersByUserPaginated {
   return async function getOrdersByUserPaginated({
-    _id,
+    user_id,
     page,
     entries_per_page,
   }) {
     const redis_payload = {
       prefix: "getOrdersByUserPaginated",
-      _id,
+      user_id,
       page,
       entries_per_page,
     };
@@ -39,7 +39,7 @@ export default function makeGetOrdersByUserPaginated({
     }
 
     const orders = await orderDb.findByUserPaginated({
-      _id,
+      user_id,
       page,
       entries_per_page,
     });

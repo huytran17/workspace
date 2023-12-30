@@ -10,11 +10,11 @@ export interface IOrderPagination extends IPagination<IOrder> {}
 
 export default interface IOrderDb {
   findByUserPaginated: ({
-    _id,
+    user_id,
     page,
     entries_per_page,
   }: {
-    _id: string;
+    user_id: string;
     page: number;
     entries_per_page: number;
   }) => Promise<IOrderPagination>;
