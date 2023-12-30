@@ -1,11 +1,13 @@
 import {
   AdminModel,
+  CommentModel,
   CommentPhotoModel,
   OrderModel,
   PasswordResetModel,
   UserModel,
 } from "@/database/models";
 import makeAdminDb from "./make-admin-db";
+import makeCommentDb from "./make-comment-db";
 import makeCommentPhotoDb from "./make-comment-photo-db";
 import makeOrderDb from "./make-order-db";
 import makePasswordResetDb from "./make-password-reset-db";
@@ -29,14 +31,19 @@ const commentPhotoDb = makeCommentPhotoDb({
   commentPhotoDbModel: CommentPhotoModel,
 });
 
+const commentDb = makeCommentDb({
+  commentDbModel: CommentModel,
+});
+
 const dbServices = Object.freeze({
   userDb,
   passwordResetDb,
   orderDb,
   adminDb,
   commentPhotoDb,
+  commentDb,
 });
 
 export default dbServices;
 
-export { adminDb, commentPhotoDb, orderDb, passwordResetDb, userDb };
+export { adminDb, commentDb, commentPhotoDb, orderDb, passwordResetDb, userDb };
